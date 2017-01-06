@@ -1,0 +1,12 @@
+/* global Item GameImage */
+class GoalPost extends Item {
+    constructor(_x, _y) {
+        super(_x, _y);
+        this.image = new GameImage(MyGame.imgs["goal_post"]);
+        this.setHitBox(60, 300, 0, -60);
+    }
+    collect() {
+        Eduardo.levelCleared[Eduardo.currentLevel] = true;
+        MyGame.setWorld(new OverWorld());
+    }
+}
