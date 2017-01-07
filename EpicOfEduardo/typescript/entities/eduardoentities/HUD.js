@@ -36,6 +36,5 @@ class HUD extends Entity {
             this.hearts[i].render(g, this.x + 240 + 24 * i, this.y + 20);
         }
         g.text(Eduardo.money.toString(), 520, 48);
-        g.text(Eduardo.currentLevel, 30, 80);
     }
 }

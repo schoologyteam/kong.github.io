@@ -325,6 +325,7 @@ class MyGame {
         this.addLevelXML("butter_beach_2", "./assets/levels/butter_beach_2.xml");
         this.addLevelXML("cave", "./assets/levels/cave.xml");
         this.addLevelXML("cave_2", "./assets/levels/cave_2.xml");
+		this.addLevelXML("cold_lake", "./assets/levels/cold_lake.xml");
         this.addLevelXML("city_bridge", "./assets/levels/city_bridge.xml");
         this.addLevelXML("cursed_mountain", "./assets/levels/cursed_mountain.xml");
         this.addLevelXML("cursed_cave", "./assets/levels/cursed_cave.xml");
