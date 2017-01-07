@@ -19,7 +19,6 @@ class Alligator extends BaseMobile {
         this.setXSpeed(5);
         this.setHitBox(132, 36, 6, 0);
         this.setType("enemy");
-        console.log("rawr");
     }
     update(_dt) {
         if (!this.alive) {

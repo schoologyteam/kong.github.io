@@ -57,7 +57,7 @@ class LevelNode extends Entity {
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Rocky River") {
-            MyGame.setWorld(new LevelWorld("rocky_river_s1", 7104, 416));
+            MyGame.setWorld(new LevelWorld("rocky_river_s1", 7104, 640));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Mudboot's Path") {
@@ -77,7 +77,7 @@ class LevelNode extends Entity {
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Logger's Way") {
-            MyGame.setWorld(new LevelWorld("loggers_way", 8600, 1900));
+            MyGame.setWorld(new LevelWorld("loggers_way", 8580, 1600));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Cold Lake") {
@@ -86,6 +86,10 @@ class LevelNode extends Entity {
         }
         else if (this.levelName === "Lost Manor") {
             MyGame.setWorld(new LevelWorld("mansion_foyer", 48, 640));
+            MyGame.color = "#12124E";
+        }
+        else if (this.levelName === "Belle's Bridge") {
+            MyGame.setWorld(new LevelWorld("river_bridge", 48, 626));
             MyGame.color = "#12124E";
         }
         else if (this.levelName == "Riverside" || this.levelName == "Joel's Convenience" || this.levelName == "Outpost" || this.levelName == "Snow Cabin") {
