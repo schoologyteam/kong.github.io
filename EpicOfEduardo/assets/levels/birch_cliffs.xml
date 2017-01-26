@@ -195,7 +195,7 @@
     <clockbot id="28" x="1127" y="829" drops="0" />
     <clockbot id="29" x="853" y="1021" drops="0" />
     <buzzbot id="30" x="1232" y="328" behavior="Circle" speed="1" size="60" drops="0" />
-    <buzzbot id="31" x="1360" y="640" behavior="Shoot" speed="1.2" size="30" drops="0" />
+    <buzzbot id="31" x="1360" y="640" behavior="Shoot" speed="1.2" size="60" drops="0" />
     <thornplant id="32" x="1520" y="678" />
     <silvercoin id="33" x="800" y="920" />
     <silvercoin id="34" x="1496" y="680" />

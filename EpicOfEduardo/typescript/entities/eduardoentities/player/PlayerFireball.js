@@ -1,4 +1,4 @@
-/* global BaseMobile */
+/* global BaseMobile MyGame HitBox GameSprite*/
 class PlayerFireball extends BaseMobile {
     constructor(_x, _y, _s) {
         super(_x, _y);
@@ -28,6 +28,9 @@ class PlayerFireball extends BaseMobile {
             }
         }
         if (this.flare) {
+            if (this.checkOnGround()) {
+                this.setYSpeed(0);
+            }
             this.timer--;
             if (this.timer <= 0) {
                 this.destroy();

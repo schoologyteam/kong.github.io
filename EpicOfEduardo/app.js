@@ -1,4 +1,4 @@
-/* global KeyManager Graphics TiledImage World Entity HitBox Image MenuWorld*/
+/* global KeyManager Graphics TiledImage World Eduardo localStorage Image MenuWorld*/
 class MyGame {
     constructor(width = 768, height = 576, scale = 1) {
         MyGame.WIDTH = width;
@@ -120,6 +120,9 @@ class MyGame {
         MyGame.imgs["base_tiles"] = new Image();
         MyGame.imgs["base_tiles"].onload = () => this.imageLoaded();
         MyGame.imgs["base_tiles"].src = "./assets/gfx/base_tiles_24x24.png";
+        MyGame.imgs["ball"] = new Image();
+        MyGame.imgs["ball"].onload = () => this.imageLoaded();
+        MyGame.imgs["ball"].src = "./assets/gfx/ball_16x16.png";
         MyGame.imgs["bat"] = new Image();
         MyGame.imgs["bat"].onload = () => this.imageLoaded();
         MyGame.imgs["bat"].src = "./assets/gfx/bat_24x15x4.png";
@@ -201,6 +204,9 @@ class MyGame {
         MyGame.imgs["fire_hat"] = new Image();
         MyGame.imgs["fire_hat"].onload = () => this.imageLoaded();
         MyGame.imgs["fire_hat"].src = "./assets/gfx/red_hat_18x21x10.png";
+        MyGame.imgs["gem_ruby"] = new Image();
+        MyGame.imgs["gem_ruby"].onload = () => this.imageLoaded();
+        MyGame.imgs["gem_ruby"].src = "./assets/gfx/gemstone_16x16x3.png";
         MyGame.imgs["glide_wings"] = new Image();
         MyGame.imgs["glide_wings"].onload = () => this.imageLoaded();
         MyGame.imgs["glide_wings"].src = "./assets/gfx/glide_wings_24x24.png";
@@ -243,6 +249,9 @@ class MyGame {
         MyGame.imgs["matchbox"] = new Image();
         MyGame.imgs["matchbox"].onload = () => this.imageLoaded();
         MyGame.imgs["matchbox"].src = "./assets/gfx/matchbox_24x24.png";
+        MyGame.imgs["mk_turtle"] = new Image();
+        MyGame.imgs["mk_turtle"].onload = () => this.imageLoaded();
+        MyGame.imgs["mk_turtle"].src = "./assets/gfx/mk2_turtle_72x96x4.png";
         MyGame.imgs["platform_blue"] = new Image();
         MyGame.imgs["platform_blue"].onload = () => this.imageLoaded();
         MyGame.imgs["platform_blue"].src = "./assets/gfx/blue_toggle_block_thin_24x8x2.png";
@@ -327,8 +336,12 @@ class MyGame {
         this.addLevelXML("cave_2", "./assets/levels/cave_2.xml");
 		this.addLevelXML("cold_lake", "./assets/levels/cold_lake.xml");
         this.addLevelXML("city_bridge", "./assets/levels/city_bridge.xml");
+        this.addLevelXML("city_secret", "./assets/levels/city_secret.xml");
+        this.addLevelXML("city_tower", "./assets/levels/city_tower.xml");
         this.addLevelXML("cursed_mountain", "./assets/levels/cursed_mountain.xml");
         this.addLevelXML("cursed_cave", "./assets/levels/cursed_cave.xml");
+        this.addLevelXML("forest_view", "./assets/levels/forest_view.xml");
+        this.addLevelXML("hidden_house", "./assets/levels/hidden_house.xml");
         this.addLevelXML("loggers_way", "./assets/levels/loggers_way.xml");
         this.addLevelXML("mudboots_path_1", "./assets/levels/mudboots_path_1.xml");
         this.addLevelXML("mudboots_path_2", "./assets/levels/mudboots_path_2.xml");
@@ -350,13 +363,14 @@ class MyGame {
         this.addLevelXML("simons_swamp", "./assets/levels/simons_swamp.xml");
         this.addLevelXML("simons_secret", "./assets/levels/simons_secret.xml");
         this.addLevelXML("snowdrift_forest", "./assets/levels/snowdrift_forest.xml");
+        this.addLevelXML("turtle_arena", "./assets/levels/turtle_arena.xml");
         this.addLevelXML("whimsy_woodlands", "./assets/levels/whimsy_woodlands.xml");
         this.addLevelXML("sugar_meadows", "./assets/levels/sugar_meadows.xml");
     }
     imageLoaded() {
         this.imgCount += 1;
         console.log(this.imgCount);
-        if (this.imgCount >= 67 && !this.running) {
+        if (this.imgCount >= 70 && !this.running) {
             this.loadLevels();
         }
     }
@@ -410,7 +424,6 @@ class MyGame {
         Eduardo.levelCleared["Outpost"] = true;
         Eduardo.levelCleared["Snow Cabin"] = true;
         localStorage.setItem("power", Eduardo.power.toString());
-        localStorage.setItem("maxHearts", Eduardo.maxHearts.toString());
         localStorage.setItem("money", Eduardo.money.toString());
     }
     /* loads game from local storage if availible */
@@ -447,7 +460,10 @@ class MyGame {
             Eduardo.levelCleared["Cursed Mountain"] = (localStorage.getItem("Cursed Mountain") === "true");
             Eduardo.levelCleared["Fake Queen's Castle"] = (localStorage.getItem("Fake Queen's Castle") === "true");
             Eduardo.levelCleared["Abandoned Town"] = (localStorage.getItem("Abandoned Town") === "true");
-            Eduardo.maxHearts = parseInt(localStorage.getItem("maxHearts"), 10);
+            Eduardo.maxHearts = 6;
+            if (Eduardo.levelCleared["City's Secret"]) {
+                Eduardo.maxHearts += 2;
+            }
             Eduardo.hearts = Eduardo.maxHearts;
             Eduardo.power = parseInt(localStorage.getItem("power"), 10);
             Eduardo.money = parseInt(localStorage.getItem("money"), 10);

@@ -240,6 +240,9 @@ class Eduardo extends Entity {
                 }
             }
         }
+        if (this.collideTypes("wall", this.x + this.getXSpeed(), this.y)) {
+            this.setXSpeed(0);
+        }
     }
     controls() {
         let keyDown = false;

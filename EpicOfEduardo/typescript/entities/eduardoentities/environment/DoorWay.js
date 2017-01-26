@@ -83,6 +83,18 @@ class DoorWay extends Entity {
         else if (_s == 25) {
             this.stage = "simons_secret";
         }
+        else if (_s == 26) {
+            this.stage = "city_secret";
+        }
+        else if (_s == 27) {
+            this.stage = "turtle_arena";
+        }
+        else if (_s == 28) {
+            this.stage = "forest_view";
+        }
+        else if (_s == 29) {
+            this.stage = "hidden_house";
+        }
     }
     update() {
         if (this.collideTypes("player", this.x, this.y)) {
@@ -90,7 +102,7 @@ class DoorWay extends Entity {
                 if (this.stage === "cursed_mountain") {
                     MyGame.color = "#87CEFA";
                 }
-                if (this.stage === "cursed_cave") {
+                if (this.stage === "cursed_cave" || this.stage === "city_secret") {
                     MyGame.color = "#191213";
                 }
                 MyGame.setWorld(new LevelWorld(this.stage, this.targetX, this.targetY));

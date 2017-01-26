@@ -2,7 +2,7 @@
 class SpringBlock extends Entity {
     constructor(_x, _y) {
         super(_x, _y);
-        this.setHitBox(32, 18, 0, -7);
+        this.setHitBox(64, 43, 0, 7);
         this.image = new GameSprite(MyGame.imgs["spring"], 64, 50);
         this.image.addAnimation("bounce", [0, 1, 2]);
         this.setType("wall");

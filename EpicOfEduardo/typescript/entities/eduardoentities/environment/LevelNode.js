@@ -53,7 +53,7 @@ class LevelNode extends Entity {
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Cursed Mountain") {
-            MyGame.setWorld(new LevelWorld("cursed_mountain", 64, 6699));
+            MyGame.setWorld(new LevelWorld("cursed_mountain", 64, 6696));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Rocky River") {
@@ -90,7 +90,15 @@ class LevelNode extends Entity {
         }
         else if (this.levelName === "Belle's Bridge") {
             MyGame.setWorld(new LevelWorld("river_bridge", 48, 626));
-            MyGame.color = "#12124E";
+            MyGame.color = "#87CEFA";
+        }
+        else if (this.levelName === "City's Secret") {
+            MyGame.setWorld(new LevelWorld("city_tower", 72, 2400));
+            MyGame.color = "#87CEFA";
+        }
+        else if (this.levelName === "Forest's View") {
+            MyGame.setWorld(new LevelWorld("forest_view", 8448, 864));
+            MyGame.color = "#87CEFA";
         }
         else if (this.levelName == "Riverside" || this.levelName == "Joel's Convenience" || this.levelName == "Outpost" || this.levelName == "Snow Cabin") {
             MyGame.setWorld(new LevelWorld("shop", 48, 306));

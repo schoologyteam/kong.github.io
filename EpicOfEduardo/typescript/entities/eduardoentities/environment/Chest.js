@@ -25,6 +25,7 @@ class Chest extends Entity {
             if (KeyManager.pressed("x")) {
                 this.opened = 1;
                 if (this.contents === 0) {
+                    this.world.addEntity(new Heart(player.x + 60 * dir, this.y));
                 }
                 else if (this.contents <= 12) {
                     this.world.addEntity(new PowerUp(player.x + 60 * dir, this.y, this.contents));

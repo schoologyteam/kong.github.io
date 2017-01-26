@@ -1,4 +1,4 @@
-/*global BaseMobile GameSprite HitBox*/
+/*global BaseMobile GameSprite HitBox Bullet MyGame */
 class FireHat extends BaseMobile {
     constructor(_x, _y, drops) {
         super(_x, _y);
@@ -108,7 +108,7 @@ class FireHat extends BaseMobile {
                     else {
                         this.faceRight = true;
                         this.image.playAnimation("right", 15);
-                        if (this.x - this.target.x > 210) {
+                        if (this.target.x - this.x < 210) {
                             this.setXSpeed(-2);
                         }
                         else {

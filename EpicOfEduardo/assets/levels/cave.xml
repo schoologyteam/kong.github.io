@@ -135,7 +135,7 @@
     <silvercoin id="71" x="2288" y="336" />
     <silvercoin id="72" x="1320" y="232" />
     <silvercoin id="73" x="1016" y="184" />
-    <silvercoin id="74" x="640" y="180" />
+    <silvercoin id="74" x="640" y="200" />
     <doorway id="75" x="2280" y="400" stage="1" targetX="48" targetY="150" />
     <coppercoin id="76" x="2288" y="440" />
     <coppercoin id="77" x="2280" y="448" />

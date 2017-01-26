@@ -198,6 +198,12 @@ class LevelWorld extends World {
             let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
             this.addEntity(new Breakable(x, y, "rocks"));
         }
+        elem = mapXML.getElementsByTagName("mk_turtle");
+        for (let i = 0; i < elem.length; i++) {
+            let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
+            let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
+            this.addEntity(new MKTurtle(x, y));
+        }
         elem = mapXML.getElementsByTagName("shooterplant");
         for (let i = 0; i < elem.length; i++) {
             let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
