@@ -89,13 +89,13 @@ class ShooterPlant extends BaseMobile {
         if (this.getDirection() >= 0 && this.getDirection() < Math.PI / 2) {
             this.image.playAnimation("idle_br", 5, true, this.image.animationFrame);
         }
-        else if (this.getDirection() >= Math.PI / 2 && this.getDirection() < Math.PI) {
+        else if (this.getDirection() < Math.PI) {
             this.image.playAnimation("idle_bl", 5, true, this.image.animationFrame);
         }
-        else if (this.getDirection() >= Math.PI && this.getDirection() < 3 * Math.PI / 2) {
+        else if (this.getDirection() < 3 * Math.PI / 2) {
             this.image.playAnimation("idle_tl", 5, true, this.image.animationFrame);
         }
-        else if (this.getDirection() >= 3 * Math.PI / 2 && this.getDirection() < Math.PI * 2) {
+        else if (this.getDirection() < Math.PI * 2) {
             this.image.playAnimation("idle_tr", 5, true, this.image.animationFrame);
         }
     }

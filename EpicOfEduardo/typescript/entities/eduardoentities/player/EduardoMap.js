@@ -1,4 +1,4 @@
-/* global Entity GameSprite MyGame HitBox KeyManager OverWorld */
+/* global Entity GameSprite MyGame HitBox KeyManager OverWorld config */
 class EduardoMap extends Entity {
     constructor(_x, _y) {
         super(_x, _y);
@@ -66,38 +66,38 @@ class EduardoMap extends Entity {
         }
         else {
             let node = this.collideTypes("node", this.x, this.y);
-            if (KeyManager.held("ArrowUp") || KeyManager.held("Up")) {
+            if (KeyManager.held("ArrowUp") || KeyManager.held("Up") || KeyManager.held(config.keyUp)) {
                 if (node.isValidPath("ArrowUp")) {
                     this.countDown = 0.12;
                     this.cameFrom = "south";
                     this.moving = true;
                 }
             }
-            if (KeyManager.held("ArrowDown") || KeyManager.held("Down")) {
+            if (KeyManager.held("ArrowDown") || KeyManager.held("Down") || KeyManager.held(config.keyDown)) {
                 if (node.isValidPath("ArrowDown")) {
                     this.countDown = 0.12;
                     this.cameFrom = "north";
                     this.moving = true;
                 }
             }
-            if (KeyManager.held("ArrowLeft") || KeyManager.held("Left")) {
+            if (KeyManager.held("ArrowLeft") || KeyManager.held("Left") || KeyManager.held(config.keyLeft)) {
                 if (node.isValidPath("ArrowLeft")) {
                     this.countDown = 0.12;
                     this.cameFrom = "east";
                     this.moving = true;
                 }
             }
-            if (KeyManager.held("ArrowRight") || KeyManager.held("Right")) {
+            if (KeyManager.held("ArrowRight") || KeyManager.held("Right") ||  KeyManager.held(config.keyRight)) {
                 if (node.isValidPath("ArrowRight")) {
                     this.countDown = 0.12;
                     this.cameFrom = "west";
                     this.moving = true;
                 }
             }
-            if (KeyManager.pressed("Enter") || KeyManager.pressed("x")) {
+            if (KeyManager.pressed("Enter") || KeyManager.pressed(config.actionKey)) {
                 node.enterLevel();
             }
-            if (KeyManager.pressed("Escape")) {
+            if (KeyManager.pressed("Escape") || KeyManager.pressed(config.pauseKey)) {
                 MyGame.setWorld(new PauseWorld(this.world));
             }
         }

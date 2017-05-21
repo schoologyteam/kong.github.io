@@ -1,4 +1,4 @@
-/* global World MyGame Entity GameSprite KeyManager MenuWorld */
+/* global World MyGame Entity GameSprite KeyManager MenuWorld config */
 class PauseWorld extends World {
     constructor(_backWorld) {
         super();
@@ -20,19 +20,19 @@ class PauseWorld extends World {
     update(_dt) {
         MyGame.camera.setP(0, 0);
         super.update(_dt);
-        if (KeyManager.pressed("ArrowUp") || KeyManager.pressed("ArrowRight")) {
+        if (KeyManager.pressed("ArrowUp") || KeyManager.pressed("ArrowLeft") || KeyManager.pressed("Up") || KeyManager.pressed("Left") || KeyManager.held(config.keyLeft) || KeyManager.held(config.keyUp)) {
             this.choice -= 1;
             if (this.choice < 0) {
                 this.choice = this.choiceMax;
             }
         }
-        if (KeyManager.pressed("ArrowDown") || KeyManager.pressed("ArrowLeft")) {
+        if (KeyManager.pressed("ArrowDown") || KeyManager.pressed("ArrowRight") || KeyManager.pressed("Down") || KeyManager.pressed("Right") || KeyManager.held(config.keyRight) || KeyManager.held(config.keyDown)) {
             this.choice += 1;
             if (this.choice > this.choiceMax) {
                 this.choice = 0;
             }
         }
-        if (KeyManager.pressed("x") || KeyManager.pressed("Enter")) {
+        if (KeyManager.pressed("x") || KeyManager.pressed("Enter") || KeyManager.held(config.actionKey)) {
             if (this.choice == 0) {
                 MyGame.setWorld(this.backWorld);
             }
@@ -40,7 +40,7 @@ class PauseWorld extends World {
                 MyGame.setWorld(new MenuWorld());
             }
         }
-        if (KeyManager.pressed("Escape")) {
+        if (KeyManager.pressed("Escape") || KeyManager.held(config.pauseKey)) {
             MyGame.setWorld(this.backWorld);
         }
         this.selectorIcon.y = 110 + 70 * this.choice;

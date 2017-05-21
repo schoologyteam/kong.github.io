@@ -38,8 +38,8 @@ class World {
     }
     addEntity(e) {
         this.entityList.push(e);
-        e.added();
         e.setWorld(this);
+        e.added();
         this.updateCollisionGroups(e);
     }
     updateCollisionGroups(e, ot = null) {

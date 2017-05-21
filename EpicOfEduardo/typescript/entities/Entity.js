@@ -90,7 +90,7 @@ class Entity {
      * @param y - the virtual y coordinate
      */
     collideTypes(t, x, y) {
-        if (!this.world) {
+        if (!this.world || !this.mask) {
             return false;
         }
         var others = this.world.getCollisionGroup(t);
@@ -166,6 +166,13 @@ class Entity {
         }
         return _y;
     }
+    /**
+     * Sets the width, height and offsets and creates a hitbox to assign as the mask
+     * _w   the width
+     * _h   the height
+     * _x   the x offset
+     * _y   the y offset
+     */
     setHitBox(_w, _h, _x = 0, _y = 0) {
         this.width = _w;
         this.height = _h;

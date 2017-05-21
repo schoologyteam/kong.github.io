@@ -1,4 +1,4 @@
-/* global Item GameImage */
+/* global Item GameImage Eduardo MyGame */
 class GoalPost extends Item {
     constructor(_x, _y) {
         super(_x, _y);
@@ -7,6 +7,7 @@ class GoalPost extends Item {
     }
     collect() {
         Eduardo.levelCleared[Eduardo.currentLevel] = true;
-        MyGame.setWorld(new OverWorld());
+        Eduardo.hearts += 2;
+        this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
     }
 }

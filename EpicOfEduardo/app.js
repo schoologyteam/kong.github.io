@@ -1,4 +1,4 @@
-/* global KeyManager Graphics TiledImage World Entity HitBox Image MenuWorld*/
+/* global KeyManager Graphics TiledImage World Eduardo localStorage Image MenuWorld MouseManager navigator */
 class MyGame {
     constructor(width = 768, height = 576, scale = 1) {
         MyGame.WIDTH = width;
@@ -6,7 +6,38 @@ class MyGame {
         MyGame.SCALE = scale;
         this.camera = new Point(0, 0);
         MyGame.camera = this.camera; // default camera
+        config.keyUp = "i";
+        config.keyDown = "k";
+        config.keyLeft = "j";
+        config.keyRight = "l";
+        config.actionKey = "x";
+        config.jumpKey = "z";
+        config.pauseKey = "p";
+        config.muteKey = "m";
+        config.keyMapper = null;
         this.keyManager = new KeyManager();
+        navigator.sayswho= (function(){
+            var N= navigator.appName, ua= navigator.userAgent, tem;
+            var M= ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i);
+            if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1];
+            M= M? [M[1], M[2]]: [N, navigator.appVersion, '-?'];
+            return M;
+        })();
+        let browser = "f";
+        if (navigator.sayswho[0] == "Firefox") {
+	        browser="f";
+        }
+        else if (navigator.sayswho[0] == "Chrome") {
+	        browser="c";
+        }
+        else if (navigator.sayswho[0] == "Safari") {
+	        browser="s";
+        }
+        else  if (navigator.sayswho[0] == "Microsoft") {
+	        browser="m";
+        }
+        this.keyManager = new KeyManager();
+        this.mouseManager = new MouseManager(browser);
         this.g = new Graphics(width, height, scale);
         this.state = 1;
         this.imgCount = 0;
@@ -47,6 +78,14 @@ class MyGame {
         MyGame.world = new MenuWorld();
     }
     update(_dt) {
+        this.keyManager.preUpdate(config.keyUp);
+        this.keyManager.preUpdate(config.keyDown);
+        this.keyManager.preUpdate(config.keyLeft);
+        this.keyManager.preUpdate(config.keyRight);
+        this.keyManager.preUpdate(config.actionKey);
+        this.keyManager.preUpdate(config.jumpKey);
+        this.keyManager.preUpdate(config.pauseKey);
+        this.keyManager.preUpdate(config.muteKey);
         KeyManager.preUpdate("ArrowUp");
         KeyManager.preUpdate("ArrowDown");
         KeyManager.preUpdate("ArrowLeft");
@@ -57,13 +96,19 @@ class MyGame {
         KeyManager.preUpdate("Right");
         KeyManager.preUpdate("Enter");
         KeyManager.preUpdate("Escape");
-        KeyManager.preUpdate("c");
-        KeyManager.preUpdate("x");
-        KeyManager.preUpdate("z");
+        MouseManager.preUpdate();
         if (MyGame.world) {
             MyGame.world.update(_dt);
             MyGame.world.cleanup();
         }
+        this.keyManager.postUpdate(config.keyUp);
+        this.keyManager.postUpdate(config.keyDown);
+        this.keyManager.postUpdate(config.keyLeft);
+        this.keyManager.postUpdate(config.keyRight);
+        this.keyManager.postUpdate(config.actionKey);
+        this.keyManager.postUpdate(config.jumpKey);
+        this.keyManager.postUpdate(config.pauseKey);
+        this.keyManager.postUpdate(config.muteKey);
         KeyManager.postUpdate("ArrowUp");
         KeyManager.postUpdate("ArrowDown");
         KeyManager.postUpdate("ArrowLeft");
@@ -77,10 +122,12 @@ class MyGame {
         KeyManager.postUpdate("c");
         KeyManager.postUpdate("x");
         KeyManager.postUpdate("z");
+        MouseManager.postUpdate();
     }
     render() {
+        this.g.setCamera(MyGame.camera);
         this.g.clear();
-        this.g.rectangle(0, 0, MyGame.WIDTH, MyGame.HEIGHT, MyGame.color);
+        this.g.rectangle(MyGame.camera.x, MyGame.camera.y, MyGame.WIDTH, MyGame.HEIGHT, MyGame.color);
         if (MyGame.world) {
             MyGame.world.render(this.g);
         }
@@ -117,9 +164,15 @@ class MyGame {
         MyGame.imgs["alligator"] = new Image();
         MyGame.imgs["alligator"].onload = () => this.imageLoaded();
         MyGame.imgs["alligator"].src = "./assets/gfx/alligator_72x18x12.png";
+        MyGame.imgs["amethyst"] = new Image();
+        MyGame.imgs["amethyst"].onload = () => this.imageLoaded();
+        MyGame.imgs["amethyst"].src = "./assets/gfx/amethyst_16x16x3.png";
         MyGame.imgs["base_tiles"] = new Image();
         MyGame.imgs["base_tiles"].onload = () => this.imageLoaded();
         MyGame.imgs["base_tiles"].src = "./assets/gfx/base_tiles_24x24.png";
+        MyGame.imgs["ball"] = new Image();
+        MyGame.imgs["ball"].onload = () => this.imageLoaded();
+        MyGame.imgs["ball"].src = "./assets/gfx/ball_16x16.png";
         MyGame.imgs["bat"] = new Image();
         MyGame.imgs["bat"].onload = () => this.imageLoaded();
         MyGame.imgs["bat"].src = "./assets/gfx/bat_24x15x4.png";
@@ -201,6 +254,12 @@ class MyGame {
         MyGame.imgs["fire_hat"] = new Image();
         MyGame.imgs["fire_hat"].onload = () => this.imageLoaded();
         MyGame.imgs["fire_hat"].src = "./assets/gfx/red_hat_18x21x10.png";
+        MyGame.imgs["gem_ruby"] = new Image();
+        MyGame.imgs["gem_ruby"].onload = () => this.imageLoaded();
+        MyGame.imgs["gem_ruby"].src = "./assets/gfx/gemstone_16x16x3.png";
+        MyGame.imgs["gem_topaz"] = new Image();
+        MyGame.imgs["gem_topaz"].onload = () => this.imageLoaded();
+        MyGame.imgs["gem_topaz"].src = "./assets/gfx/topaz_24x24x3.png";
         MyGame.imgs["glide_wings"] = new Image();
         MyGame.imgs["glide_wings"].onload = () => this.imageLoaded();
         MyGame.imgs["glide_wings"].src = "./assets/gfx/glide_wings_24x24.png";
@@ -243,6 +302,9 @@ class MyGame {
         MyGame.imgs["matchbox"] = new Image();
         MyGame.imgs["matchbox"].onload = () => this.imageLoaded();
         MyGame.imgs["matchbox"].src = "./assets/gfx/matchbox_24x24.png";
+        MyGame.imgs["mk_turtle"] = new Image();
+        MyGame.imgs["mk_turtle"].onload = () => this.imageLoaded();
+        MyGame.imgs["mk_turtle"].src = "./assets/gfx/mk2_turtle_72x96x4.png";
         MyGame.imgs["platform_blue"] = new Image();
         MyGame.imgs["platform_blue"].onload = () => this.imageLoaded();
         MyGame.imgs["platform_blue"].src = "./assets/gfx/blue_toggle_block_thin_24x8x2.png";
@@ -273,6 +335,9 @@ class MyGame {
         MyGame.imgs["slime"] = new Image();
         MyGame.imgs["slime"].onload = () => this.imageLoaded();
         MyGame.imgs["slime"].src = "./assets/gfx/slime_32x24x4.png";
+        MyGame.imgs["sparkles"] = new Image();
+        MyGame.imgs["sparkles"].onload = () => this.imageLoaded();
+        MyGame.imgs["sparkles"].src = "./assets/gfx/sparkle_particle_9x9.png";
         MyGame.imgs["spring"] = new Image();
         MyGame.imgs["spring"].onload = () => this.imageLoaded();
         MyGame.imgs["spring"].src = "./assets/gfx/purple_spring_32x25x3.png";
@@ -315,6 +380,9 @@ class MyGame {
         MyGame.imgs["wing_boots"] = new Image();
         MyGame.imgs["wing_boots"].onload = () => this.imageLoaded();
         MyGame.imgs["wing_boots"].src = "./assets/gfx/wing_boots_24x24.png";
+        MyGame.imgs["yeti"] = new Image();
+        MyGame.imgs["yeti"].onload = () => this.imageLoaded();
+        MyGame.imgs["yeti"].src = "./assets/gfx/yeti_48x48x12.png";
     }
     loadLevels() {
         this.addLevelXML("above_stonehenge", "./assets/levels/above_stonehenge.xml");
@@ -327,9 +395,20 @@ class MyGame {
         this.addLevelXML("cave_2", "./assets/levels/cave_2.xml");
 		this.addLevelXML("cold_lake", "./assets/levels/cold_lake.xml");
         this.addLevelXML("city_bridge", "./assets/levels/city_bridge.xml");
+        this.addLevelXML("city_secret", "./assets/levels/city_secret.xml");
+        this.addLevelXML("city_tower", "./assets/levels/city_tower.xml");
         this.addLevelXML("cursed_mountain", "./assets/levels/cursed_mountain.xml");
         this.addLevelXML("cursed_cave", "./assets/levels/cursed_cave.xml");
+        this.addLevelXML("forest_view", "./assets/levels/forest_view.xml");
+        this.addLevelXML("hidden_house", "./assets/levels/hidden_house.xml");
+        this.addLevelXML("ice_cavern", "./assets/levels/ice_cavern.xml");
+        this.addLevelXML("lakes_view", "./assets/levels/lakes_view.xml");
         this.addLevelXML("loggers_way", "./assets/levels/loggers_way.xml");
+        this.addLevelXML("lost_woods_1", "./assets/levels/lost_woods_1.xml");
+        this.addLevelXML("lost_woods_2", "./assets/levels/lost_woods_2.xml");
+        this.addLevelXML("lost_woods_3", "./assets/levels/lost_woods_3.xml");
+        this.addLevelXML("lost_woods_4", "./assets/levels/lost_woods_4.xml");
+        this.addLevelXML("lost_woods_5", "./assets/levels/lost_woods_5.xml");
         this.addLevelXML("mudboots_path_1", "./assets/levels/mudboots_path_1.xml");
         this.addLevelXML("mudboots_path_2", "./assets/levels/mudboots_path_2.xml");
         this.addLevelXML("mansion_fire", "./assets/levels/mansion_fire_wing.xml");
@@ -338,6 +417,10 @@ class MyGame {
         this.addLevelXML("mansion_hammer", "./assets/levels/mansion_hammer_wing.xml");
         this.addLevelXML("mansion_jump", "./assets/levels/mansion_jump_wing.xml");
         this.addLevelXML("mansion_normal", "./assets/levels/mansion_normal_wing.xml");
+        this.addLevelXML("maze_cave_1", "./assets/levels/maze_cave.xml");
+        this.addLevelXML("maze_cave_2", "./assets/levels/maze_cave_2.xml");
+        this.addLevelXML("maze_cave_3", "./assets/levels/maze_cave_3.xml");
+        this.addLevelXML("maze_cave_4", "./assets/levels/maze_cave_4.xml");
         this.addLevelXML("outskirts", "./assets/levels/city_outskirts.xml");
         this.addLevelXML("outskirts_warehouse", "./assets/levels/outskirts_warehouse.xml");
         this.addLevelXML("over_map", "./assets/levels/over_map.xml");
@@ -350,13 +433,15 @@ class MyGame {
         this.addLevelXML("simons_swamp", "./assets/levels/simons_swamp.xml");
         this.addLevelXML("simons_secret", "./assets/levels/simons_secret.xml");
         this.addLevelXML("snowdrift_forest", "./assets/levels/snowdrift_forest.xml");
-        this.addLevelXML("whimsy_woodlands", "./assets/levels/whimsy_woodlands.xml");
         this.addLevelXML("sugar_meadows", "./assets/levels/sugar_meadows.xml");
+        this.addLevelXML("turtle_arena", "./assets/levels/turtle_arena.xml");
+        this.addLevelXML("whimsy_woodlands", "./assets/levels/whimsy_woodlands.xml");
+        this.addLevelXML("yeti_arena", "./assets/levels/yeti_arena.xml");
     }
     imageLoaded() {
         this.imgCount += 1;
         console.log(this.imgCount);
-        if (this.imgCount >= 67 && !this.running) {
+        if (this.imgCount >= 74 && !this.running) {
             this.loadLevels();
         }
     }
@@ -410,7 +495,6 @@ class MyGame {
         Eduardo.levelCleared["Outpost"] = true;
         Eduardo.levelCleared["Snow Cabin"] = true;
         localStorage.setItem("power", Eduardo.power.toString());
-        localStorage.setItem("maxHearts", Eduardo.maxHearts.toString());
         localStorage.setItem("money", Eduardo.money.toString());
     }
     /* loads game from local storage if availible */
@@ -447,7 +531,13 @@ class MyGame {
             Eduardo.levelCleared["Cursed Mountain"] = (localStorage.getItem("Cursed Mountain") === "true");
             Eduardo.levelCleared["Fake Queen's Castle"] = (localStorage.getItem("Fake Queen's Castle") === "true");
             Eduardo.levelCleared["Abandoned Town"] = (localStorage.getItem("Abandoned Town") === "true");
-            Eduardo.maxHearts = parseInt(localStorage.getItem("maxHearts"), 10);
+            Eduardo.maxHearts = 6;
+            if (Eduardo.levelCleared["City's Secret"]) {
+                Eduardo.maxHearts += 2;
+            }
+            if (Eduardo.levelCleared["Ice Peak Cavern"]) {
+                Eduardo.maxHearts += 2;
+            }
             Eduardo.hearts = Eduardo.maxHearts;
             Eduardo.power = parseInt(localStorage.getItem("power"), 10);
             Eduardo.money = parseInt(localStorage.getItem("money"), 10);
@@ -505,6 +595,7 @@ MyGame.color = "#000000";
 MyGame.imgs = [];
 MyGame.maps = [];
 MyGame.textLanguage = "English";
+let config = {};
 window.onload = () => {
     var myGame = new MyGame();
     myGame.imgCount = 0;

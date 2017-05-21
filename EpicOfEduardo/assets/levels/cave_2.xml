@@ -42,5 +42,23 @@
     <platform id="1" x="216" y="72" width="72" />
     <doorway id="2" x="48" y="168" stage="0" targetX="2280" targetY="390" />
     <vibrantcrystal id="3" x="240" y="48" />
+    <particlefx id="4" x="192" y="24" width="24" height="24" type="sparkles" />
+    <particlefx id="5" x="168" y="24" width="24" height="24" type="sparkles" />
+    <particlefx id="6" x="144" y="24" width="24" height="24" type="sparkles" />
+    <particlefx id="7" x="144" y="48" width="24" height="24" type="sparkles" />
+    <particlefx id="8" x="96" y="72" width="24" height="24" type="sparkles" />
+    <particlefx id="9" x="96" y="96" width="24" height="24" type="sparkles" />
+    <particlefx id="10" x="72" y="72" width="24" height="24" type="sparkles" />
+    <particlefx id="11" x="48" y="72" width="24" height="24" type="sparkles" />
+    <particlefx id="12" x="120" y="168" width="24" height="24" type="sparkles" />
+    <particlefx id="13" x="144" y="168" width="24" height="24" type="sparkles" />
+    <particlefx id="14" x="168" y="168" width="24" height="24" type="sparkles" />
+    <particlefx id="15" x="192" y="168" width="24" height="24" type="sparkles" />
+    <particlefx id="16" x="264" y="168" width="24" height="24" type="sparkles" />
+    <particlefx id="17" x="264" y="144" width="24" height="24" type="sparkles" />
+    <particlefx id="18" x="264" y="120" width="24" height="24" type="sparkles" />
+    <particlefx id="19" x="264" y="96" width="24" height="24" type="sparkles" />
+    <particlefx id="20" x="264" y="72" width="24" height="24" type="sparkles" />
+    <particlefx id="21" x="192" y="96" width="24" height="24" type="sparkles" />
   </entities>
 </level>

@@ -1,4 +1,4 @@
-/* global Item GameInage MyGame */
+/* global Item GameInage MyGame GameImage */
 class PowerUp extends Item {
     constructor(_x, _y, power) {
         super(_x, _y);
@@ -19,7 +19,6 @@ class PowerUp extends Item {
             this.image = new GameImage(MyGame.imgs["hammer"]);
         }
         this.mask = new HitBox(this.x, this.y, 48, 48);
-        this.setType("item");
     }
     collect() {
         Eduardo.power = this.power;

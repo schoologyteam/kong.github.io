@@ -1,4 +1,4 @@
-/* global BaseMobile */
+/* global BaseMobile GameSprite MyGame */
 class Buzzbot extends BaseMobile {
     constructor(_x, _y, _pattern = "Circle", ps = 2, _size = 0, _d) {
         super(_x, _y);

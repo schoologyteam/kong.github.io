@@ -83,17 +83,59 @@ class DoorWay extends Entity {
         else if (_s == 25) {
             this.stage = "simons_secret";
         }
+        else if (_s == 26) {
+            this.stage = "city_secret";
+        }
+        else if (_s == 27) {
+            this.stage = "turtle_arena";
+        }
+        else if (_s == 28) {
+            this.stage = "forest_view";
+        }
+        else if (_s == 29) {
+            this.stage = "hidden_house";
+        }
+        else if (_s == 30) {
+            this.stage = "maze_cave_1";
+        }
+        else if (_s == 31) {
+            this.stage = "maze_cave_2";
+        }
+        else if (_s == 32) {
+            this.stage = "maze_cave_3";
+        }
+        else if (_s == 33) {
+            this.stage = "maze_cave_4";
+        }
+        else if (_s == 34) {
+            this.stage = "lost_woods_1";
+        }
+        else if (_s == 35) {
+            this.stage = "lost_woods_2";
+        }
+        else if (_s == 36) {
+            this.stage = "lost_woods_3";
+        }
+        else if (_s == 37) {
+            this.stage = "lost_woods_4";
+        }
+        else if (_s == 38) {
+            this.stage = "lost_woods_5";
+        }
+        else if (_s == 39) {
+            this.stage = "yeti_arena";
+        }
     }
     update() {
         if (this.collideTypes("player", this.x, this.y)) {
-            if (KeyManager.pressed("x") || KeyManager.pressed("ArrowUp")) {
+            if (KeyManager.pressed(config.actionKey) || KeyManager.pressed("ArrowUp") || KeyManager.pressed(config.keyUp)) {
                 if (this.stage === "cursed_mountain") {
                     MyGame.color = "#87CEFA";
                 }
-                if (this.stage === "cursed_cave") {
+                if (this.stage === "cursed_cave" || this.stage === "city_secret") {
                     MyGame.color = "#191213";
                 }
-                MyGame.setWorld(new LevelWorld(this.stage, this.targetX, this.targetY));
+                this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new LevelWorld(this.stage, this.targetX, this.targetY)));
             }
         }
     }

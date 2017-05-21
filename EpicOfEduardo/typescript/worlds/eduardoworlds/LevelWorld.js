@@ -1,4 +1,4 @@
-/* global World MyGame GridMask TiledImage Entity Eduardo DoorWay */
+/* global World MyGame GridMask TiledImage Entity Eduardo DoorWay HitBox SpringBlock ToggleBlock CrumblingBlock TogglePlatform BubbleSwitch TimerSwitch ShopItem */
 class LevelWorld extends World {
     constructor(_l, _x, _y) {
         super();
@@ -25,6 +25,14 @@ class LevelWorld extends World {
             let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
             let p = new Entity(x, y, null, new HitBox(x, y, parseInt(elem[i].getAttribute("width"), 10) * 2, 16));
             p.setType("platform");
+            this.addEntity(p);
+        }
+        elem = mapXML.getElementsByTagName("ice");
+        for (let i = 0; i < elem.length; i++) {
+            let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
+            let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
+            let p = new Entity(x, y, null, new HitBox(x, y, parseInt(elem[i].getAttribute("width"), 10) * 2, 32));
+            p.setType("ice");
             this.addEntity(p);
         }
         elem = mapXML.getElementsByTagName("spring");
@@ -135,6 +143,15 @@ class LevelWorld extends World {
             let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
             this.addEntity(new TimerSwitch(x, y, "yellow"));
         }
+        elem = mapXML.getElementsByTagName("particlefx");
+        for (let i = 0; i < elem.length; i++) {
+            let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
+            let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
+            let name = elem[i].getAttribute("type");
+            if (name == "sparkles") {
+                this.addEntity(new SparkleSquare(x, y, 48, 48));
+            }
+        }
         elem = mapXML.getElementsByTagName("hazards");
         for (let i = 0; i < elem.length; i++) {
             let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
@@ -197,6 +214,18 @@ class LevelWorld extends World {
             let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
             let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
             this.addEntity(new Breakable(x, y, "rocks"));
+        }
+        elem = mapXML.getElementsByTagName("mk_turtle");
+        for (let i = 0; i < elem.length; i++) {
+            let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
+            let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
+            this.addEntity(new MKTurtle(x, y));
+        }
+        elem = mapXML.getElementsByTagName("yeti");
+        for (let i = 0; i < elem.length; i++) {
+            let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
+            let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
+            this.addEntity(new Yeti(x, y));
         }
         elem = mapXML.getElementsByTagName("shooterplant");
         for (let i = 0; i < elem.length; i++) {

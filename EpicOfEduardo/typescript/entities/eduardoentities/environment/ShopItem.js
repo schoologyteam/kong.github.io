@@ -1,4 +1,4 @@
-/* global GameSprite Entity MyGame */
+/* global GameSprite Entity MyGame GameImage Eduardo */
 class ShopItem extends Entity {
     constructor(_x, _y, _i) {
         super(_x, _y);
@@ -43,6 +43,7 @@ class ShopItem extends Entity {
                             Eduardo.hearts = Eduardo.maxHearts;
                         }
                     }
+                    Eduardo.money -= this.price;
                 }
             }
         }

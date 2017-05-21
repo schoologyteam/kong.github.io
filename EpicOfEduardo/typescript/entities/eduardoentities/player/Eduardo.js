@@ -1,4 +1,4 @@
-/* global Entity GameSprite MyGame HitBox KeyManager OverWorld Hammer PlayerFireball PowderBall*/
+/* global Entity GameSprite MyGame HitBox KeyManager OverWorld Hammer PlayerFireball PowderBall ScreenTransition config */
 class Eduardo extends Entity {
     constructor(_x, _y) {
         super(_x, _y);
@@ -56,6 +56,10 @@ class Eduardo extends Entity {
         this.costume.push(s);
     }
     update(_dt) {
+        if (Eduardo.screenTransition) {
+            this.visible = true;
+            return;
+        }
         if (this.cooldown > 0) {
             this.cooldown -= 1;
         }
@@ -123,12 +127,12 @@ class Eduardo extends Entity {
     }
     collisions() {
         if (this.y > this.world.height || Eduardo.hearts <= 0) {
-            Eduardo.hearts = Eduardo.maxHearts;
+            Eduardo.hearts = 6;
             Eduardo.power = 0;
-            MyGame.setWorld(new OverWorld);
+            this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
         }
         else if (this.x + 48 < 0 || this.x > this.world.width) {
-            MyGame.setWorld(new OverWorld);
+            this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
         }
         let item = this.collideTypes("item", this.x, this.y);
         if (item) {
@@ -240,10 +244,13 @@ class Eduardo extends Entity {
                 }
             }
         }
+        if (this.collideTypes("wall", this.x + this.getXSpeed(), this.y)) {
+            this.setXSpeed(0);
+        }
     }
     controls() {
         let keyDown = false;
-        if (KeyManager.held("ArrowLeft") || KeyManager.held("Left")) {
+        if (KeyManager.held("ArrowLeft") || KeyManager.held("Left") || KeyManager.held(config.keyLeft)) {
             this.friction = 0.1;
             keyDown = true;
             this.faceRight = false;
@@ -259,7 +266,7 @@ class Eduardo extends Entity {
                 }
             }
         }
-        if (KeyManager.held("ArrowRight") || KeyManager.held("Right")) {
+        if (KeyManager.held("ArrowRight") || KeyManager.held("Right") || KeyManager.held(config.keyRight)) {
             this.friction = 0.1;
             keyDown = true;
             this.faceRight = true;
@@ -275,14 +282,14 @@ class Eduardo extends Entity {
                 }
             }
         }
-        if (KeyManager.pressed("ArrowUp") || KeyManager.pressed("z") || KeyManager.pressed("c") || KeyManager.pressed("Up")) {
+        if (KeyManager.pressed("ArrowUp") || KeyManager.pressed(config.jumpKey) || KeyManager.pressed("Up") || KeyManager.pressed(config.keyUp)) {
             if (this.onGround) {
                 this.setYSpeed(-8.5);
                 this.jumpPow = 16;
                 this.onGround = false;
             }
         }
-        else if (KeyManager.held("ArrowUp") || KeyManager.held("z") || KeyManager.held("c") || KeyManager.held("Up")) {
+        else if (KeyManager.held("ArrowUp") || KeyManager.held(config.jumpKey) || KeyManager.held("Up") || KeyManager.held(config.keyUp)) {
             if (this.jumpPow > 0) {
                 this.jumpPow -= 1;
                 this.setYSpeed(-8.5);
@@ -291,7 +298,7 @@ class Eduardo extends Entity {
         else {
             this.jumpPow = 0;
         }
-        if (KeyManager.held("ArrowDown") || KeyManager.held("Down")) {
+        if (KeyManager.held("ArrowDown") || KeyManager.held("Down") || KeyManager.held(config.keyDown)) {
             if (this.onGround) {
                 this.isCrawling = true;
                 this.maxSpeed = 2.4;
@@ -339,7 +346,7 @@ class Eduardo extends Entity {
                 }
             }
         }
-        if (KeyManager.pressed("x") && this.cooldown <= 0) {
+        if (KeyManager.pressed(config.actionKey) && this.cooldown <= 0) {
             if (Eduardo.power === 3 && this.specialJump === 1) {
                 this.specialJump = 0;
                 this.specialJumpPow = 16;
@@ -406,7 +413,7 @@ class Eduardo extends Entity {
                 }
             }
         }
-        else if (KeyManager.held("x")) {
+        else if (KeyManager.held(config.actionKey)) {
             if (Eduardo.power === 3 && this.specialJumpPow > 0) {
                 this.specialJumpPow -= 1;
                 this.setYSpeed(-6);
@@ -428,7 +435,7 @@ class Eduardo extends Entity {
                 }
             }
         }
-        if (KeyManager.pressed("Escape")) {
+        if (KeyManager.pressed("Escape") || KeyManager.held(config.pauseKey)) {
             MyGame.setWorld(new PauseWorld(this.world));
         }
     }
@@ -453,6 +460,9 @@ class Eduardo extends Entity {
         this.onGround = true;
         this.friction = 0.30;
         this.specialJump = 1;
+        if (this.collideTypes("ice", this.x, this.y)) {
+            this.friction = 0.02;
+        }
     }
     selectHitBox(_hb) {
         if (_hb === "main") {
