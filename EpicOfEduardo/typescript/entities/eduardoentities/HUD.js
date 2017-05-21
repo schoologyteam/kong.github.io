@@ -1,4 +1,4 @@
-/* global Entity GameSprite GameImage */
+/* global Entity GameSprite GameImage Eduardo MyGame */
 class HUD extends Entity {
     constructor(_x, _y) {
         super(_x, _y);
@@ -30,11 +30,47 @@ class HUD extends Entity {
         }
     }
     render(g) {
-        this.coinIcon.render(g, this.x + 470, this.y + 12);
+        this.coinIcon.render(g, this.x + 510, this.y + 18);
         this.powerUpIcon.render(g, this.x + 12, this.y + 12);
         for (let i = 0; i < this.hearts.length; i++) {
             this.hearts[i].render(g, this.x + 240 + 24 * i, this.y + 20);
         }
-        g.text(Eduardo.money.toString(), 520, 48);
+        g.text(Eduardo.money.toString(), 539, 41, "#000000");
+        g.text(Eduardo.money.toString(), 540, 42);
     }
 }
+
+/* ScreenTransition.js */
+/**
+ * Handles visual effect associated with going from one screen to antother.
+ */
+class ScreenTransition extends Entity {
+    /**
+     * Takes a coordinate and a world to transition to.
+     */
+    constructor(_x, _y, _world) {
+        super(_x, _y);
+        this.transition = () => {
+            MyGame.setWorld(_world);
+        };
+        this.timer = 20;
+        Eduardo.screenTransition = true;
+    }
+    update(_dt) {
+        this.timer -= 1;
+        if (this.timer <= 0) {
+            this.transition();
+            Eduardo.screenTransition = false;
+        }
+    }
+    render(_g) {
+        let relY = this.timer * MyGame.HEIGHT / 20;
+        let relX = this.timer * MyGame.WIDTH / 20;
+        _g.rectangle(this.x, this.y - relY, MyGame.WIDTH, MyGame.HEIGHT);
+        _g.rectangle(this.x - relX, this.y, MyGame.WIDTH, MyGame.HEIGHT);
+        _g.rectangle(this.x, this.y + relY, MyGame.WIDTH, MyGame.HEIGHT);
+        _g.rectangle(this.x + relX, this.y, MyGame.WIDTH, MyGame.HEIGHT);
+    }
+}
+
+Eduardo.screenTransition = false;

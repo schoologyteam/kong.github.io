@@ -1,4 +1,4 @@
-/* global DoorWay */
+/* global DoorWay MyGame LevelWorld */
 class WalkWay extends DoorWay {
     constructor(_s, _x, _y, _tx, _ty, _w, _h) {
         super(_s, _x, _y, _tx, _ty);
@@ -6,7 +6,7 @@ class WalkWay extends DoorWay {
     }
     update() {
         if (this.collideTypes("player", this.x, this.y)) {
-            MyGame.setWorld(new LevelWorld(this.stage, this.targetX, this.targetY));
+            this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new LevelWorld(this.stage, this.targetX, this.targetY)));
         }
     }
 }

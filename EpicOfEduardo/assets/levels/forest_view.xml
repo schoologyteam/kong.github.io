@@ -149,5 +149,6 @@
     <coppercoin id="85" x="632" y="240" />
     <chest id="86" x="1312" y="480" item="7" />
     <doorway id="87" x="3672" y="424" stage="29" targetX="168" targetY="200" />
+    <platform id="37" x="960" y="192" width="120" />
   </entities>
 </level>

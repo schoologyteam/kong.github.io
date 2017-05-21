@@ -90,7 +90,7 @@ class Entity {
      * @param y - the virtual y coordinate
      */
     collideTypes(t, x, y) {
-        if (!this.world) {
+        if (!this.world || !this.mask) {
             return false;
         }
         var others = this.world.getCollisionGroup(t);

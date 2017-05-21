@@ -1,4 +1,4 @@
-/* global Entity HitBox GameSprite MyGame LevelWorld */
+/* global Entity HitBox GameSprite MyGame LevelWorld Eduardo */
 class LevelNode extends Entity {
     constructor(_x, _y, _ln) {
         super(_x, _y);
@@ -20,90 +20,188 @@ class LevelNode extends Entity {
     }
     enterLevel() {
         Eduardo.currentLevel = this.levelName;
+        let _ln = null;
+        let _sx = 0;
+        let _sy = 0;
         if (this.levelName === "Mystic Cave") {
-            MyGame.setWorld(new LevelWorld("cave", 64, 409));
+            _ln = "cave";
+            _sx = 64;
+            _sy = 408;
+            //MyGame.setWorld(new LevelWorld("cave", 64, 409));
             MyGame.color = "#121218";
         }
         else if (this.levelName === "Pretty Plains") {
-            MyGame.setWorld(new LevelWorld("pretty_plains_1", 32, 310));
+            _ln = "pretty_plains_1";
+            _sx = 32;
+            _sy = 310;
+            //MyGame.setWorld(new LevelWorld("pretty_plains_1", 32, 310));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Coastown Bridge") {
-            MyGame.setWorld(new LevelWorld("city_bridge", 48, 404));
+            _ln = "city_bridge";
+            _sx = 48;
+            _sy = 404;
+            //MyGame.setWorld(new LevelWorld("city_bridge", 48, 404));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Butter Beach") {
-            MyGame.setWorld(new LevelWorld("butter_beach", 48, 962));
+            _ln = "butter_beach";
+            _sx = 48;
+            _sy = 962;
+            //MyGame.setWorld(new LevelWorld("butter_beach", 48, 962));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Bitter Beach") {
-            MyGame.setWorld(new LevelWorld("bitter_beach", 48, 448));
+            _ln = "bitter_beach";
+            _sx = 48;
+            _sy = 448;
+            //MyGame.setWorld(new LevelWorld("bitter_beach", 48, 448));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Outskirts") {
+            _ln = "outskirts";
+            _sx = 48;
+            _sy = 1020;
             MyGame.setWorld(new LevelWorld("outskirts", 48, 1020));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Whimsy Woodlands") {
-            MyGame.setWorld(new LevelWorld("whimsy_woodlands", 48, 1020));
+            _ln = "whimsy_woodlands";
+            _sx = 48;
+            _sy = 1020;
+            //MyGame.setWorld(new LevelWorld("whimsy_woodlands", 48, 1020));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Sugar Meadows") {
-            MyGame.setWorld(new LevelWorld("sugar_meadows", 48, 444));
+            _ln = "sugar_meadows";
+            _sx = 48;
+            _sy = 444;
+            //MyGame.setWorld(new LevelWorld("sugar_meadows", 48, 444));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Cursed Mountain") {
-            MyGame.setWorld(new LevelWorld("cursed_mountain", 64, 6696));
+            _ln = "cursed_mountain";
+            _sx = 64;
+            _sy = 6696;
+            //MyGame.setWorld(new LevelWorld("cursed_mountain", 64, 6696));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Rocky River") {
-            MyGame.setWorld(new LevelWorld("rocky_river_s1", 7104, 640));
+            _ln = "rocky_river_s1";
+            _sx = 7104;
+            _sy = 640;
+            //MyGame.setWorld(new LevelWorld("rocky_river_s1", 7104, 640));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Mudboot's Path") {
-            MyGame.setWorld(new LevelWorld("mudboots_path_1", 48, 480));
+            _ln = "mudboots_path_1";
+            _sx = 48;
+            _sy = 480;
+            //MyGame.setWorld(new LevelWorld("mudboots_path_1", 48, 480));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Simon's Swamp") {
-            MyGame.setWorld(new LevelWorld("simons_swamp", 48, 760));
+            _ln = "simons_swamp";
+            _sx = 48;
+            _sy = 760;
+            //MyGame.setWorld(new LevelWorld("simons_swamp", 48, 760));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Birch Cliffs") {
-            MyGame.setWorld(new LevelWorld("birch_cliffs", 64, 2400));
+            _ln = "birch_cliffs";
+            _sx = 64;
+            _sy = 2400;
+            //MyGame.setWorld(new LevelWorld("birch_cliffs", 64, 2400));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Snowdrift Forest") {
-            MyGame.setWorld(new LevelWorld("snowdrift_forest", 9920, 208));
+            _ln = "snowdrift_forest";
+            _sx = 9920;
+            _sy = 208;
+            //MyGame.setWorld(new LevelWorld("snowdrift_forest", 9920, 208));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Logger's Way") {
-            MyGame.setWorld(new LevelWorld("loggers_way", 8580, 1600));
+            _ln = "loggers_way";
+            _sx = 8580;
+            _sy = 1600;
+            //MyGame.setWorld(new LevelWorld("loggers_way", 8580, 1600));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Cold Lake") {
-            MyGame.setWorld(new LevelWorld("cold_lake", 48, 640));
+            _ln = "cold_lake";
+            _sx = 48;
+            _sy = 640;
+            //MyGame.setWorld(new LevelWorld("cold_lake", 48, 640));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Lost Manor") {
-            MyGame.setWorld(new LevelWorld("mansion_foyer", 48, 640));
+            _ln = "mansion_foyer";
+            _sx = 48;
+            _sy = 640;
+            //MyGame.setWorld(new LevelWorld("mansion_foyer", 48, 640));
             MyGame.color = "#12124E";
         }
         else if (this.levelName === "Belle's Bridge") {
-            MyGame.setWorld(new LevelWorld("river_bridge", 48, 626));
+            _ln = "river_bridge";
+            _sx = 48;
+            _sy = 626;
+            //MyGame.setWorld(new LevelWorld("river_bridge", 48, 626));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "City's Secret") {
-            MyGame.setWorld(new LevelWorld("city_tower", 72, 2400));
+            _ln = "city_tower";
+            _sx = 72;
+            _sy = 2400;
+            //MyGame.setWorld(new LevelWorld("city_tower", 72, 2400));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Forest's View") {
-            MyGame.setWorld(new LevelWorld("forest_view", 8448, 864));
+            _ln = "forest_view";
+            _sx = 8448;
+            _sy = 864;
+            //MyGame.setWorld(new LevelWorld("forest_view", 8448, 864));
             MyGame.color = "#87CEFA";
         }
+        else if (this.levelName === "Lake's View") {
+            _ln = "lakes_view";
+            _sx = 8496;
+            _sy = 400;
+            //MyGame.setWorld(new LevelWorld("lakes_view", 8496, 400));
+            MyGame.color = "#87CEFA";
+        }
+        if (this.levelName === "Mazey Cave 1") {
+            _ln = "maze_cave_1";
+            _sx = 32;
+            _sy = 496;
+            //MyGame.setWorld(new LevelWorld("maze_cave_1", 32 , 496));
+            MyGame.color = "#121218";
+        }
+        else if (this.levelName === "Lost Woods") {
+            _ln = "lost_woods_1";
+            _sx = 1920;
+            _sy = 400;
+            //MyGame.setWorld(new LevelWorld("lost_woods_1", 1920, 400));
+            MyGame.color = "#87CEFA";
+        }
+        if (this.levelName === "Ice Peak Cavern") {
+            _ln = "ice_cavern";
+            _sx = 32;
+            _sy = 352;
+            //MyGame.setWorld(new LevelWorld("maze_cave_1", 32 , 496));
+            MyGame.color = "#121218";
+        }
         else if (this.levelName == "Riverside" || this.levelName == "Joel's Convenience" || this.levelName == "Outpost" || this.levelName == "Snow Cabin") {
-            MyGame.setWorld(new LevelWorld("shop", 48, 306));
+            _ln = "shop";
+            _sx = 48;
+            _sy = 360;
+            //MyGame.setWorld(new LevelWorld("shop", 48, 306));
             MyGame.color = "#FBA561";
         }
+        if (!_ln) {
+            return;
+        }
+        this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new LevelWorld(_ln, _sx, _sy)));
     }
     isValidPath(_key) {
         if (_key == "ArrowUp") {
