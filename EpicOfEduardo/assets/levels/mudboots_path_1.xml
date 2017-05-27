@@ -84,7 +84,7 @@
     <thornplant id="31" x="3203" y="270" />
     <slime id="32" x="3176" y="264" />
     <buzzbot id="33" x="3336" y="200" behavior="Left" speed="1.8" size="30" drops="0" />
-    <goldcoin id="34" x="3232" y="80" index="3" />
+    <goldcoin id="34" x="4112" y="120" index="3" />
     <platform id="35" x="4032" y="264" width="192" />
     <platform id="36" x="4080" y="192" width="96" />
     <goldcoin id="37" x="4760" y="248" index="4" />

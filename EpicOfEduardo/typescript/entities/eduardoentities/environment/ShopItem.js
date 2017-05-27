@@ -30,12 +30,14 @@ class ShopItem extends Entity {
         this.setHitBox(48, 48);
     }
     update(_dt) {
-        if (this.collideTypes("player", this.x, this.y)) {
+        let player = this.collideTypes("player", this.x, this.y);
+        if (player) {
             if (KeyManager.pressed("x")) {
                 if (Eduardo.money >= this.price) {
                     if (this.item > 0) {
                         Eduardo.power = this.item;
                         Eduardo.powerHits = 3;
+                        player.selectCostume();
                     }
                     else if (this.item === 0) {
                         Eduardo.hearts += 2;

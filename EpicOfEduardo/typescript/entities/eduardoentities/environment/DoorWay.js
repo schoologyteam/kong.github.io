@@ -125,6 +125,12 @@ class DoorWay extends Entity {
         else if (_s == 39) {
             this.stage = "yeti_arena";
         }
+        else if (_s == 40) {
+            this.stage = "maze_cave_two_1";
+        }
+        else if (_s == 41) {
+            this.stage = "maze_cave_two_2";
+        }
     }
     update() {
         if (this.collideTypes("player", this.x, this.y)) {

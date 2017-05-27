@@ -24,7 +24,7 @@ class Breakable extends Entity {
         if (this.name == "rock" && this.iFrames <= 0 && _type == "hammer") {
             let h = this.image.currentFrame + 1;
             console.log(h);
-            this.iFrames = 20;
+            this.iFrames = 5;
             if (h > 2) {
                 this.destroy();
             }

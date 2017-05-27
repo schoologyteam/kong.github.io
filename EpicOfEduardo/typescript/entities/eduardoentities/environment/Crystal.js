@@ -26,6 +26,12 @@ class Crystal extends Item {
             this.image.playAnimation("glow", 18);
             this.setHitBox(32, 32);
         }
+        else if (Eduardo.currentLevel == "Mazey Cave 2") {
+            this.image = new GameSprite(MyGame.imgs["emerald"], 48, 48);
+            this.image.addAnimation("glow", [0, 1, 2, 1]);
+            this.image.playAnimation("glow", 18);
+            this.setHitBox(48, 48);
+        }
     }
     collect() {
         if (Eduardo.currentLevel == "City's Secret" && !Eduardo.levelCleared["City's Secret"]) {

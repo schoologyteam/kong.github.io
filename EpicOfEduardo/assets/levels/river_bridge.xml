@@ -181,5 +181,6 @@
     <silvercoin id="116" x="3736" y="208" />
     <coppercoin id="117" x="4312" y="296" />
     <coppercoin id="118" x="4304" y="288" />
+    <Goal id="119" x="4712" y="216" />
   </entities>
 </level>

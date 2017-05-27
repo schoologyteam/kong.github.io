@@ -26,7 +26,7 @@ class Eduardo extends Entity {
         this.addCostume("eddy_fire");
         this.setType("player");
         this.name = "Eduardo";
-        this.image = this.costume[this.index[Eduardo.power]];
+        this.selectCostume();
         this.image.playAnimation("right");
         this.offsetX = 8;
         this.width = 44;
@@ -137,7 +137,7 @@ class Eduardo extends Entity {
         let item = this.collideTypes("item", this.x, this.y);
         if (item) {
             item.collect();
-            this.image = this.costume[this.index[Eduardo.power]];
+            this.selectCostume();
         }
         if (this.iFrames > 0) {
             if (this.visible) {
@@ -177,7 +177,7 @@ class Eduardo extends Entity {
                     this.iFrames = 46;
                     if (Eduardo.powerHits <= 0) {
                         Eduardo.power = 0;
-                        this.image = this.costume[0];
+                        this.image = this.costume[this.index[Eduardo.power]];
                     }
                     if (other.x + other.width / 2 > this.x + 27) {
                         this.setXSpeed(-4);
@@ -200,7 +200,7 @@ class Eduardo extends Entity {
                 }
                 if (Eduardo.powerHits <= 0) {
                     Eduardo.power = 0;
-                    this.image = this.costume[0];
+                    this.selectCostume();
                 }
                 if (other.x + other.width / 2 > this.x + 27) {
                     this.setXSpeed(-6);
@@ -463,6 +463,9 @@ class Eduardo extends Entity {
         if (this.collideTypes("ice", this.x, this.y)) {
             this.friction = 0.02;
         }
+    }
+    selectCostume() {
+        this.image = this.costume[this.index[Eduardo.power]];
     }
     selectHitBox(_hb) {
         if (_hb === "main") {

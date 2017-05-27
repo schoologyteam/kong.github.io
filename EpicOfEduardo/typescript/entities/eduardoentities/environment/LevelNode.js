@@ -62,7 +62,7 @@ class LevelNode extends Entity {
             _ln = "outskirts";
             _sx = 48;
             _sy = 1020;
-            MyGame.setWorld(new LevelWorld("outskirts", 48, 1020));
+            //MyGame.setWorld(new LevelWorld("outskirts", 48, 1020));
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Whimsy Woodlands") {
@@ -188,8 +188,29 @@ class LevelNode extends Entity {
             _ln = "ice_cavern";
             _sx = 32;
             _sy = 352;
-            //MyGame.setWorld(new LevelWorld("maze_cave_1", 32 , 496));
+            //MyGame.setWorld(new LevelWorld("ice_peak_cavern", 32 , 496));
             MyGame.color = "#121218";
+        }
+        else if (this.levelName === "Ice Peak Path") {
+            _ln = "ice_path";
+            _sx = 9548;
+            _sy = 400;
+            //MyGame.setWorld(new LevelWorld("lakes_view", 8496, 400));
+            MyGame.color = "#87CEFA";
+        }
+        if (this.levelName === "Mazey Cave 2") {
+            _ln = "maze_cave_two_1";
+            _sx = 32;
+            _sy = 1744;
+            //MyGame.setWorld(new LevelWorld("ice_peak_cavern", 32 , 496));
+            MyGame.color = "#121218";
+        }
+        else if (this.levelName === "Mudboot's Secret") {
+            _ln = "mudboots_secret";
+            _sx = 32;
+            _sy = 544;
+            //MyGame.setWorld(new LevelWorld("lakes_view", 8496, 400));
+            MyGame.color = "#87CEFA";
         }
         else if (this.levelName == "Riverside" || this.levelName == "Joel's Convenience" || this.levelName == "Outpost" || this.levelName == "Snow Cabin") {
             _ln = "shop";
