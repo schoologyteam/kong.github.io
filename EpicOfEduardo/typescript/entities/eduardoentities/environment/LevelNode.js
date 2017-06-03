@@ -7,12 +7,19 @@ class LevelNode extends Entity {
         this.sprite = new GameSprite(MyGame.imgs["level_icons"], 16, 16);
         this.sprite.addAnimation("cleared", [4, 5, 6, 7]);
         this.sprite.addAnimation("not_cleared", [0, 1, 2, 3]);
+        this.sprite.addAnimation("shop", [8, 9, 10, 11]);
         this.image = this.sprite;
         this.sprite.playAnimation("not_cleared", 5);
         this.setType("node");
         this.cameFrom = "north";
         if (Eduardo.levelCleared[_ln]) {
             this.sprite.playAnimation("cleared", 5);
+        }
+        if (Eduardo.levelCleared[_ln]) {
+            this.sprite.playAnimation("cleared", 5);
+        }
+        if (this.levelName == "Riverside" || this.levelName == "Joel's Convenience" || this.levelName == "Outpost" || this.levelName == "Snow Cabin") {
+            this.sprite.addAnimation("shop", 5);
         }
     }
     setReturnPath(cameFrom) {
@@ -128,6 +135,18 @@ class LevelNode extends Entity {
             //MyGame.setWorld(new LevelWorld("loggers_way", 8580, 1600));
             MyGame.color = "#87CEFA";
         }
+        else if (this.levelName === "Deep Forest") {
+            _ln = "deep_woods";
+            _sx = 48;
+            _sy = 688;
+            MyGame.color = "#87CEFA";
+        }
+        else if (this.levelName === "Abandoned Town") {
+            _ln = "abandoned_town";
+            _sx = 48;
+            _sy = 208;
+            MyGame.color = "#87CEFA";
+        }
         else if (this.levelName === "Cold Lake") {
             _ln = "cold_lake";
             _sx = 48;
@@ -211,6 +230,13 @@ class LevelNode extends Entity {
             _sy = 544;
             //MyGame.setWorld(new LevelWorld("lakes_view", 8496, 400));
             MyGame.color = "#87CEFA";
+        }
+        else if (this.levelName === "Simon's Nase") {
+            _ln = "chapel_outside";
+            _sx = 48;
+            _sy = 640;
+            //MyGame.setWorld(new LevelWorld("mansion_foyer", 48, 640));
+            MyGame.color = "#12124E";
         }
         else if (this.levelName == "Riverside" || this.levelName == "Joel's Convenience" || this.levelName == "Outpost" || this.levelName == "Snow Cabin") {
             _ln = "shop";

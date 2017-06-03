@@ -97,6 +97,7 @@ class ClockBot extends BaseMobile {
     onCollision(dmg, _type) {
         if (_type == "hammer") {
             this.alive = false;
+            this.setType(null);
         }
         else {
             if (this.invFrames > 0) {

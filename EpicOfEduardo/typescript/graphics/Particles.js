@@ -31,7 +31,7 @@ class ParticleEmitter {
         this.getColour = () => {
             return spec.colour;
         };
-        this.setRadious = (_r) => {
+        this.setRadius = (_r) => {
             spec.r = _r;
         };
         this.getRadius = () => {

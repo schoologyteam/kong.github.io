@@ -10,25 +10,31 @@ class Crystal extends Item {
         }
         else if (Eduardo.currentLevel == "City's Secret") {
             this.image = new GameSprite(MyGame.imgs["gem_ruby"], 32, 32);
-            this.image.addAnimation("glow", [0, 1, 2, 1]);
+            this.image.addAnimation("glow", [0, 1, 2, 1, 0]);
             this.image.playAnimation("glow", 20);
             this.setHitBox(32, 32);
         }
         else if (Eduardo.currentLevel == "Mazey Cave 1") {
             this.image = new GameSprite(MyGame.imgs["gem_topaz"], 48, 48);
-            this.image.addAnimation("glow", [0, 1, 2, 1]);
+            this.image.addAnimation("glow", [0, 1, 2, 1, 0]);
             this.image.playAnimation("glow", 18);
             this.setHitBox(48, 48);
         }
         else if (Eduardo.currentLevel == "Ice Peak Cavern") {
             this.image = new GameSprite(MyGame.imgs["amethyst"], 32, 32);
-            this.image.addAnimation("glow", [0, 1, 2, 1]);
+            this.image.addAnimation("glow", [0, 1, 2, 1, 0]);
             this.image.playAnimation("glow", 18);
             this.setHitBox(32, 32);
         }
         else if (Eduardo.currentLevel == "Mazey Cave 2") {
             this.image = new GameSprite(MyGame.imgs["emerald"], 48, 48);
-            this.image.addAnimation("glow", [0, 1, 2, 1]);
+            this.image.addAnimation("glow", [0, 1, 2, 1, 0]);
+            this.image.playAnimation("glow", 18);
+            this.setHitBox(48, 48);
+        }
+        else if (Eduardo.currentLevel == "Simon's Nase") {
+            this.image = new GameSprite(MyGame.imgs["gem_saphire"], 48, 48);
+            this.image.addAnimation("glow", [0, 1, 2, 1, 0]);
             this.image.playAnimation("glow", 18);
             this.setHitBox(48, 48);
         }

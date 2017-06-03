@@ -189,26 +189,19 @@ class MyGame {
         this.addImage("eddy_powder", "./assets/gfx/eddy_powder_31x35x28.png");
         this.addImage("eddy_wings", "./assets/gfx/eddy_wings_31x35x28.png");
         this.addImage("eddy_map", "./assets/gfx/eddy_overmap_16x16x2.png");
-        this.addImage("emerald", "./assets/gfx/emerald_32x32x3");
+        this.addImage("emerald", "./assets/gfx/emerald_24x24x3");
         this.addImage("fire", "./assets/gfx/fire_particle_image_16x16x5.png");
         this.addImage("fire_hat", "./assets/gfx/red_hat_18x21x10.png");
         this.addImage("gem_ruby", "./assets/gfx/gemstone_16x16x3.png");
+        this.addImage("gem_saphire", "./assets/gfx/saphire_24x24x3.png");
         this.addImage("gem_topaz", "./assets/gfx/topaz_24x24x3.png");
         this.addImage("glide_wings", "./assets/gfx/glide_wings_24x24.png");
         this.addImage("goal_post", "./assets/gfx/goal_post_30x120.png");
         this.addImage("gold", "./assets/gfx/gold_coin_24x24x3.png");
-        MyGame.imgs["hammer"] = new Image();
-        MyGame.imgs["hammer"].onload = () => this.imageLoaded();
-        MyGame.imgs["hammer"].src = "./assets/gfx/hammer_24x24.png";
-        MyGame.imgs["hammer_swing"] = new Image();
-        MyGame.imgs["hammer_swing"].onload = () => this.imageLoaded();
-        MyGame.imgs["hammer_swing"].src = "./assets/gfx/hammer_swing_20x17x6.png";
-        MyGame.imgs["heart"] = new Image();
-        MyGame.imgs["heart"].onload = () => this.imageLoaded();
-        MyGame.imgs["heart"].src = "./assets/gfx/heart_24x24x3.png";
-        MyGame.imgs["icons"] = new Image();
-        MyGame.imgs["icons"].onload = () => this.imageLoaded();
-        MyGame.imgs["icons"].src = "./assets/gfx/icons_24x24x13.png";
+        this.addImage("hammer", "./assets/gfx/hammer_24x24.png");
+        this.addImage("hammer_swing", "./assets/gfx/hammer_swing_20x17x6.png");
+        this.addImage("heart", "./assets/gfx/heart_24x24x3.png");
+        this.addImage("icons", "./assets/gfx/icons_24x24x13.png");
         MyGame.imgs["jumpbot"] = new Image();
         MyGame.imgs["jumpbot"].onload = () => this.imageLoaded();
         MyGame.imgs["jumpbot"].src = "./assets/gfx/jumper_bot_20x32x8.png";
@@ -313,6 +306,8 @@ class MyGame {
         MyGame.imgs["yeti"].src = "./assets/gfx/yeti_48x48x12.png";
     }
     loadLevels() {
+        this.addLevelXML("abandoned_shop", "./assets/levels/abandoned_shop.xml");
+        this.addLevelXML("abandoned_town", "./assets/levels/abandoned_town.xml");
         this.addLevelXML("above_stonehenge", "./assets/levels/above_stonehenge.xml");
         this.addLevelXML("bridge_warehouse", "./assets/levels/bridge_warehouse.xml");
         this.addLevelXML("birch_cliffs", "./assets/levels/birch_cliffs.xml");
@@ -321,12 +316,16 @@ class MyGame {
         this.addLevelXML("butter_beach_2", "./assets/levels/butter_beach_2.xml");
         this.addLevelXML("cave", "./assets/levels/cave.xml");
         this.addLevelXML("cave_2", "./assets/levels/cave_2.xml");
+        this.addLevelXML("celler", "./assets/levels/celler.xml");
+        this.addLevelXML("chapel_interior", "./assets/levels/chapel_interior.xml");
+        this.addLevelXML("chapel_outside", "./assets/levels/chapel_outside.xml");
 		this.addLevelXML("cold_lake", "./assets/levels/cold_lake.xml");
         this.addLevelXML("city_bridge", "./assets/levels/city_bridge.xml");
         this.addLevelXML("city_secret", "./assets/levels/city_secret.xml");
         this.addLevelXML("city_tower", "./assets/levels/city_tower.xml");
         this.addLevelXML("cursed_mountain", "./assets/levels/cursed_mountain.xml");
         this.addLevelXML("cursed_cave", "./assets/levels/cursed_cave.xml");
+        this.addLevelXML("deep_woods", "./assets/levels/deep_woods.xml");
         this.addLevelXML("forest_view", "./assets/levels/forest_view.xml");
         this.addLevelXML("hidden_house", "./assets/levels/hidden_house.xml");
         this.addLevelXML("ice_cavern", "./assets/levels/ice_cavern.xml");
@@ -356,6 +355,7 @@ class MyGame {
         this.addLevelXML("outskirts", "./assets/levels/city_outskirts.xml");
         this.addLevelXML("outskirts_warehouse", "./assets/levels/outskirts_warehouse.xml");
         this.addLevelXML("over_map", "./assets/levels/over_map.xml");
+        this.addLevelXML("passage_way", "./assets/levels/passage_way.xml");
         this.addLevelXML("pretty_plains_1", "./assets/levels/pretty_plains_1.xml");
         this.addLevelXML("pretty_plains_2", "./assets/levels/pretty_plains_2.xml");
         this.addLevelXML("river_bridge", "./assets/levels/river_bridge.xml");
