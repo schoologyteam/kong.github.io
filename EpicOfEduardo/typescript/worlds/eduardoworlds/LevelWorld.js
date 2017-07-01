@@ -143,6 +143,12 @@ class LevelWorld extends World {
             let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
             this.addEntity(new TimerSwitch(x, y, "yellow"));
         }
+        elem = mapXML.getElementsByTagName("bossgate");
+        for (let i = 0; i < elem.length; i++) {
+            let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
+            let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
+            this.addEntity(new BossGate(x, y));
+        }
         elem = mapXML.getElementsByTagName("particlefx");
         for (let i = 0; i < elem.length; i++) {
             let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
@@ -215,6 +221,12 @@ class LevelWorld extends World {
             let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
             this.addEntity(new Breakable(x, y, "rocks"));
         }
+        elem = mapXML.getElementsByTagName("sign");
+        for (let i = 0; i < elem.length; i++) {
+            let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
+            let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
+            this.addEntity(new RoadSign(x, y, parseInt(elem[i].getAttribute("text"), 10)));
+        }
         elem = mapXML.getElementsByTagName("mk_turtle");
         for (let i = 0; i < elem.length; i++) {
             let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
@@ -226,6 +238,12 @@ class LevelWorld extends World {
             let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
             let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
             this.addEntity(new Yeti(x, y));
+        }
+        elem = mapXML.getElementsByTagName("witch");
+        for (let i = 0; i < elem.length; i++) {
+            let x = parseInt(elem[i].getAttribute("x"), 10) * 2;
+            let y = parseInt(elem[i].getAttribute("y"), 10) * 2;
+            this.addEntity(new Witch(x, y));
         }
         elem = mapXML.getElementsByTagName("shooterplant");
         for (let i = 0; i < elem.length; i++) {

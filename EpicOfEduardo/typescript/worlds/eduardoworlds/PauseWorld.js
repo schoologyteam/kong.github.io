@@ -47,8 +47,10 @@ class PauseWorld extends World {
     }
     render(_g) {
         super.render(_g);
+        _g.rectangle(48, 48, MyGame.WIDTH - 96, MyGame.HEIGHT - 96);
         for (let i = 0; i < 2; i++) {
             _g.text(this.menuText[i], 250, 146 + 70 * i);
         }
+        this.selectorIcon.render(_g);
     }
 }

@@ -97,7 +97,7 @@
     <thornplant id="2" x="825" y="533" />
     <clockbot id="3" x="1248" y="512" drops="0" />
     <firehat id="4" x="1320" y="496" drops="False" />
-    <buzzbot id="5" x="1128" y="208" behavior="Eight" speed="2" size="30" drops="0" />
+    <buzzbot id="5" x="1128" y="208" behavior="Eight" speed="1.8" size="40" drops="0" />
     <buzzbot id="6" x="1080" y="264" behavior="Circle" speed="1" size="30" drops="0" />
     <buzzbot id="8" x="984" y="376" behavior="Circle" speed="1" size="70" drops="0" />
     <platform id="9" x="1440" y="456" width="24" />
@@ -207,5 +207,6 @@
     <coppercoin id="112" x="4328" y="560" />
     <silvercoin id="113" x="3656" y="536" />
     <platform id="114" x="496" y="456" width="64" />
+    <chest id="115" x="2856" y="624" item="0" />
   </entities>
 </level>

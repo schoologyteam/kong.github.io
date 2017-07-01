@@ -2,8 +2,8 @@
 class Bullet extends BaseMobile {
     constructor(_x, _y, _i, _s, _d) {
         super(_x, _y);
-        this.setSpeed(_s);
         this.setDirection(_d);
+        this.setSpeed(_s);
         this.image = new GameSprite(MyGame.imgs["projectiles"], 16, 16);
         this.index = _i;
         this.image.currentFrame = _i;

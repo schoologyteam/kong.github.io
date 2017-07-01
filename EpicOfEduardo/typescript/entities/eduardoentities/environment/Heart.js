@@ -3,7 +3,7 @@ class Heart extends Item {
     constructor(_x, _y) {
         super(_x, _y);
         this.image = new GameSprite(MyGame.imgs["heart"], 48, 48);
-        this.setHitBox(32, 32, 8, 8);
+        this.setHitBox(24, 24, 16, 16);
     }
     collect() {
         Eduardo.hearts += 2;

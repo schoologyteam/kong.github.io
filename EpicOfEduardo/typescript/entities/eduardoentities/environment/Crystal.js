@@ -38,6 +38,12 @@ class Crystal extends Item {
             this.image.playAnimation("glow", 18);
             this.setHitBox(48, 48);
         }
+        else if (Eduardo.currentLevel == "Fake Queen's Castle") {
+            this.image = new GameSprite(MyGame.imgs["diamond"], 48, 48);
+            this.image.addAnimation("glow", [0, 1, 2, 1, 0]);
+            this.image.playAnimation("glow", 18);
+            this.setHitBox(48, 48);
+        }
     }
     collect() {
         if (Eduardo.currentLevel == "City's Secret" && !Eduardo.levelCleared["City's Secret"]) {
@@ -45,6 +51,12 @@ class Crystal extends Item {
         }
         if (Eduardo.currentLevel == "Ice Peak Cavern" && !Eduardo.levelCleared["Ice Peak Cavern"]) {
             Eduardo.maxHearts += 2;
+        }
+        if (Eduardo.currentLevel == "Fake Queen's Castle" && !Eduardo.levelCleared["Fake Queen's Castle"]) {
+            Eduardo.maxHearts += 2;
+            Eduardo.levelCleared[Eduardo.currentLevel] = true;
+            this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new CutScene2()));
+            return;
         }
         Eduardo.levelCleared[Eduardo.currentLevel] = true;
         this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));

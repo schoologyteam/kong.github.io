@@ -15,17 +15,16 @@ class LevelNode extends Entity {
         if (Eduardo.levelCleared[_ln]) {
             this.sprite.playAnimation("cleared", 5);
         }
-        if (Eduardo.levelCleared[_ln]) {
-            this.sprite.playAnimation("cleared", 5);
-        }
         if (this.levelName == "Riverside" || this.levelName == "Joel's Convenience" || this.levelName == "Outpost" || this.levelName == "Snow Cabin") {
-            this.sprite.addAnimation("shop", 5);
+            this.sprite.playAnimation("shop", 5);
         }
     }
     setReturnPath(cameFrom) {
         this.cameFrom = cameFrom;
     }
     enterLevel() {
+        MyGame.nowPlaying.pause();
+        MyGame.nowPlaying.currentTime = 0;
         Eduardo.currentLevel = this.levelName;
         let _ln = null;
         let _sx = 0;
@@ -48,7 +47,8 @@ class LevelNode extends Entity {
             _ln = "city_bridge";
             _sx = 48;
             _sy = 404;
-            //MyGame.setWorld(new LevelWorld("city_bridge", 48, 404));
+            MyGame.nowPlaying = MyGame.snds["City"];
+            MyGame.nowPlaying.play();
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Butter Beach") {
@@ -69,7 +69,8 @@ class LevelNode extends Entity {
             _ln = "outskirts";
             _sx = 48;
             _sy = 1020;
-            //MyGame.setWorld(new LevelWorld("outskirts", 48, 1020));
+            MyGame.nowPlaying = MyGame.snds["City"];
+            MyGame.nowPlaying.play();
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Whimsy Woodlands") {
@@ -125,7 +126,8 @@ class LevelNode extends Entity {
             _ln = "snowdrift_forest";
             _sx = 9920;
             _sy = 208;
-            //MyGame.setWorld(new LevelWorld("snowdrift_forest", 9920, 208));
+            MyGame.nowPlaying = MyGame.snds["Snow"];
+            MyGame.nowPlaying.play();
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Logger's Way") {
@@ -145,6 +147,8 @@ class LevelNode extends Entity {
             _ln = "abandoned_town";
             _sx = 48;
             _sy = 208;
+            MyGame.nowPlaying = MyGame.snds["City"];
+            MyGame.nowPlaying.play();
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Cold Lake") {
@@ -165,14 +169,16 @@ class LevelNode extends Entity {
             _ln = "river_bridge";
             _sx = 48;
             _sy = 626;
-            //MyGame.setWorld(new LevelWorld("river_bridge", 48, 626));
+            MyGame.nowPlaying = MyGame.snds["City"];
+            MyGame.nowPlaying.play();
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "City's Secret") {
             _ln = "city_tower";
             _sx = 72;
             _sy = 2400;
-            //MyGame.setWorld(new LevelWorld("city_tower", 72, 2400));
+            MyGame.nowPlaying = MyGame.snds["City"];
+            MyGame.nowPlaying.play();
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Forest's View") {
@@ -207,14 +213,16 @@ class LevelNode extends Entity {
             _ln = "ice_cavern";
             _sx = 32;
             _sy = 352;
-            //MyGame.setWorld(new LevelWorld("ice_peak_cavern", 32 , 496));
+            MyGame.nowPlaying = MyGame.snds["Snow"];
+            MyGame.nowPlaying.play();
             MyGame.color = "#121218";
         }
         else if (this.levelName === "Ice Peak Path") {
             _ln = "ice_path";
             _sx = 9548;
             _sy = 400;
-            //MyGame.setWorld(new LevelWorld("lakes_view", 8496, 400));
+            MyGame.nowPlaying = MyGame.snds["Snow"];
+            MyGame.nowPlaying.play();
             MyGame.color = "#87CEFA";
         }
         if (this.levelName === "Mazey Cave 2") {
@@ -236,6 +244,18 @@ class LevelNode extends Entity {
             _sx = 48;
             _sy = 640;
             //MyGame.setWorld(new LevelWorld("mansion_foyer", 48, 640));
+            MyGame.color = "#12124E";
+        }
+        else if (this.levelName === "Swamp's End") {
+            _ln = "swamps_end";
+            _sx = 48;
+            _sy = 320;
+            MyGame.color = "#87CEFA";
+        }
+        else if (this.levelName === "Fake Queen's Castle") {
+            _ln = "castle_entrance";
+            _sx = 48;
+            _sy = 224;
             MyGame.color = "#12124E";
         }
         else if (this.levelName == "Riverside" || this.levelName == "Joel's Convenience" || this.levelName == "Outpost" || this.levelName == "Snow Cabin") {

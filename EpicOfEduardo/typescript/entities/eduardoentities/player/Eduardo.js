@@ -129,7 +129,12 @@ class Eduardo extends Entity {
         if (this.y > this.world.height || Eduardo.hearts <= 0) {
             Eduardo.hearts = 6;
             Eduardo.power = 0;
-            this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
+            if (Eduardo.levelCleared["Mystic Cave"]) {
+                this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
+            }
+            else {
+                this.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new LevelWorld("cave", 64, 408)));
+            }
         }
         else if (this.x + 48 < 0 || this.x > this.world.width) {
             this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));

@@ -149,6 +149,24 @@ class DoorWay extends Entity {
         else if (_s == 47) {
             this.stage = "abandoned_shop";
         }
+        else if (_s == 48) {
+            this.stage = "castle_entrance";
+        }
+        else if (_s == 49) {
+            this.stage = "castle_1";
+        }
+        else if (_s == 50) {
+            this.stage = "castle_jbr";
+        }
+        else if (_s == 51) {
+            this.stage = "castle_2";
+        }
+        else if (_s == 52) {
+            this.stage = "castle_abr";
+        }
+        else if (_s == 53) {
+            this.stage = "witch_arena";
+        }
     }
     update() {
         if (this.collideTypes("player", this.x, this.y)) {

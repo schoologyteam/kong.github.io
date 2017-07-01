@@ -150,10 +150,10 @@
     <hazards id="22" x="384" y="344" side="bottom" />
     <hazards id="23" x="360" y="344" side="bottom" />
     <goldcoin id="24" x="696" y="720" index="0" />
-    <goldcoin id="25" x="592" y="168" index="1" />
-    <goldcoin id="26" x="96" y="168" index="2" />
+    <goldcoin id="25" x="592" y="176" index="1" />
+    <goldcoin id="26" x="96" y="192" index="2" />
     <slime id="27" x="664" y="312" />
-    <bat id="28" x="904" y="824" pattern="Circle" preferredSpeed="1" size="40" />
+    <bat id="28" x="904" y="824" pattern="Circle" preferredSpeed="1.1" size="50" />
     <bat id="29" x="856" y="704" pattern="Circle" preferredSpeed="1.1" size="85" />
     <slime id="31" x="768" y="336" />
     <bat id="32" x="328" y="624" pattern="Eight" preferredSpeed="1.5" size="90" />

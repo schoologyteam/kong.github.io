@@ -29,9 +29,11 @@ class OverWorld extends World {
             b.setType("block");
             this.addEntity(b);
         }
+        if (!OverWorld.playerPoint.x) {
+            OverWorld.playerPoint = new Point(68 * 2, 244 * 2);
+        }
         this.addEntity(new EduardoMap(OverWorld.playerPoint.x, OverWorld.playerPoint.y));
         Coin.collected = new Array(false, false, false, false, false);
     }
 }
 OverWorld.playerPoint = new Point(68 * 2, 244 * 2);
-//OverWorld.playerPoint = new Point(68 * 2, 244 * 2); 

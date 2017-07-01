@@ -13,6 +13,7 @@ class ThornPlant extends Hazard {
     smash(_s) {
         if (_s == this.weakness || _s == "hammer") {
             this.destroy();
+            this.world.addEntity(new SmashEffect(this.x, this.y, this.weakness));
         }
     }
 }
