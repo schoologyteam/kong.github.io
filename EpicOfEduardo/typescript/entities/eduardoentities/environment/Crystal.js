@@ -48,18 +48,22 @@ class Crystal extends Item {
     collect() {
         if (Eduardo.currentLevel == "City's Secret" && !Eduardo.levelCleared["City's Secret"]) {
             Eduardo.maxHearts += 2;
+            Eduardo.hearts = Eduardo.maxHearts;
         }
         if (Eduardo.currentLevel == "Ice Peak Cavern" && !Eduardo.levelCleared["Ice Peak Cavern"]) {
             Eduardo.maxHearts += 2;
+            Eduardo.hearts = Eduardo.maxHearts;
         }
         if (Eduardo.currentLevel == "Fake Queen's Castle" && !Eduardo.levelCleared["Fake Queen's Castle"]) {
             Eduardo.maxHearts += 2;
+            Eduardo.hearts = Eduardo.maxHearts;
             Eduardo.levelCleared[Eduardo.currentLevel] = true;
             this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new CutScene2()));
             return;
         }
         Eduardo.levelCleared[Eduardo.currentLevel] = true;
-        this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
+        Eduardo.hearts += 2;
+        this.world.addEntity(new VictoryFanfare(MyGame.camera.x, MyGame.camera.y));
     }
     update(_dt) {
         this.image.updateAnimation(_dt);

@@ -118,6 +118,7 @@ class EduardoMap extends Entity {
             if (KeyManager.pressed("Enter") || KeyManager.pressed(config.actionKey)) {
                 node.enterLevel();
                 OverWorld.cameFrom = this.cameFrom;
+                MyGame.saveGame();
             }
             if (KeyManager.pressed("Escape") || KeyManager.pressed(config.pauseKey)) {
                 MyGame.setWorld(new PauseWorld(this.world));

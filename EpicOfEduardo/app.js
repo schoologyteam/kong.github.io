@@ -364,6 +364,7 @@ class MyGame {
         localStorage.setItem("Deep Forest", Eduardo.levelCleared["Deep Forest"].toString());
         localStorage.setItem("Mazey Cave 1", Eduardo.levelCleared["Mazey Cave 1"].toString());
         localStorage.setItem("Sugar Meadows", Eduardo.levelCleared["Sugar Meadows"].toString());
+        localStorage.setItem("Birch Cliffs", Eduardo.levelCleared["Birch Cliffs"].toString());
         localStorage.setItem("Belle's Bridge", Eduardo.levelCleared["Belle's Bridge"].toString());
         localStorage.setItem("Lost Woods", Eduardo.levelCleared["Lost Woods"].toString());
         localStorage.setItem("Forest View", Eduardo.levelCleared["Forest View"].toString());
@@ -397,7 +398,9 @@ class MyGame {
         localStorage.setItem("muteKey", config.muteKey);
         localStorage.setItem("owx", OverWorld.playerPoint.x);
         localStorage.setItem("owy", OverWorld.playerPoint.y);
-        localStorage.setItem("owf", OverWorld.playerPoint.cameFrom);
+        if (OverWorld.cameFrom) {
+            localStorage.setItem("owf", OverWorld.cameFrom);
+        }
     }
     /* loads game from local storage if availible */
     static loadGame() {
@@ -409,7 +412,7 @@ class MyGame {
             Eduardo.levelCleared["Outskirts"] = (localStorage.getItem("Outskirts") === "true");
             Eduardo.levelCleared["Coastown Bridge"] = (localStorage.getItem("Coastown Bridge") === "true");
             Eduardo.levelCleared["City's Secret"] = (localStorage.getItem("City's Secret") === "true");
-            Eduardo.levelCleared["Whimsy Woodlands"] = (localStorage.getItem("") === "true");
+            Eduardo.levelCleared["Whimsy Woodlands"] = (localStorage.getItem("Whimsy Woodlands") === "true");
             Eduardo.levelCleared["Lost Manor"] = (localStorage.getItem("Lost Manor") === "true");
             Eduardo.levelCleared["Deep Forest"] = (localStorage.getItem("Deep Forest") === "true");
             Eduardo.levelCleared["Mazey Cave 1"] = (localStorage.getItem("Mazey Cave 1") === "true");

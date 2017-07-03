@@ -34,6 +34,7 @@ class Eduardo extends Entity {
         this.mask = this.mainHitBox;
         this.crawlHitBox = new HitBox(this.x + this.offsetX, this.y + 30, this.width, 40);
         this.platformSweepHitBox = new HitBox(this.x + this.offsetX, this.y + 60, this.width, 10);
+        this.victoryTimer = 0;
     }
     addCostume(cs) {
         let s = new GameSprite(MyGame.imgs[cs], 62, 70);
@@ -126,6 +127,13 @@ class Eduardo extends Entity {
         this.mask.update(this.x + this.offsetX, this.y + this.offsetY);
     }
     collisions() {
+        if (this.victoryTimer > 0) {
+            this.victoryTimer--;
+            if (this.victoryTimer <= 20) {
+                this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
+            }
+            return;
+        }
         if (this.y > this.world.height || Eduardo.hearts <= 0) {
             Eduardo.hearts = 6;
             Eduardo.power = 0;
@@ -142,6 +150,9 @@ class Eduardo extends Entity {
         let item = this.collideTypes("item", this.x, this.y);
         if (item) {
             item.collect();
+            if (item instanceof GoalPost || item instanceof Crystal) {
+                this.victoryTimer = 65;
+            }
             this.selectCostume();
         }
         if (this.iFrames > 0) {
@@ -152,7 +163,7 @@ class Eduardo extends Entity {
                 this.visible = true;
             }
             this.iFrames -= 1;
-            if (this.iFrames <= 0) {
+            if (this.iFrames <= 3) {
                 this.visible = true;
             }
         }
@@ -179,7 +190,7 @@ class Eduardo extends Entity {
                     }
                     Eduardo.hearts -= 2;
                     Eduardo.powerHits--;
-                    this.iFrames = 46;
+                    this.iFrames = 49;
                     if (Eduardo.powerHits <= 0) {
                         Eduardo.power = 0;
                         this.image = this.costume[this.index[Eduardo.power]];
@@ -199,7 +210,7 @@ class Eduardo extends Entity {
                 }
                 Eduardo.hearts--;
                 Eduardo.powerHits--;
-                this.iFrames = 46;
+                this.iFrames = 49;
                 if (other.getType() === "slime" || other.getType() === "plant") {
                     Eduardo.hearts--;
                 }
@@ -254,6 +265,11 @@ class Eduardo extends Entity {
         }
     }
     controls() {
+        if (this.victoryTimer > 0) {
+            this.setXSpeed(this.getXSpeed()*0.9);
+            this.setStandAnim();
+            return;
+        }
         let keyDown = false;
         if (KeyManager.held("ArrowLeft") || KeyManager.held("Left") || KeyManager.held(config.keyLeft)) {
             this.friction = 0.1;
@@ -342,14 +358,7 @@ class Eduardo extends Entity {
             }
         }
         if (!keyDown) {
-            if (this.onGround && !this.attacking) {
-                if (this.faceRight) {
-                    this.image.playAnimation("stand_r");
-                }
-                else {
-                    this.image.playAnimation("stand_l");
-                }
-            }
+            this.setStandAnim();
         }
         if (KeyManager.pressed(config.actionKey) && this.cooldown <= 0) {
             if (Eduardo.power === 3 && this.specialJump === 1) {
@@ -484,6 +493,16 @@ class Eduardo extends Entity {
         else if (_hb === "pfs") {
             this.mask = this.platformSweepHitBox;
             this.offsetY = 60;
+        }
+    }
+    setStandAnim() {
+        if (this.onGround && !this.attacking) {
+            if (this.faceRight) {
+                this.image.playAnimation("stand_r");
+            }
+            else {
+                this.image.playAnimation("stand_l");
+            }
         }
     }
 }

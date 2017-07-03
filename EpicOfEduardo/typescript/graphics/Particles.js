@@ -37,7 +37,8 @@ class ParticleEmitter {
         this.getRadius = () => {
             return spec.r;
         };
-        spec.setSize = (_w, _h) => {
+        this.setSize = (_w, _h) => {
+            spec.size = {};
             spec.size.w = _w;
             spec.size.h = _h;
         };

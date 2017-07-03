@@ -15,7 +15,7 @@ class Hazard extends Entity {
 class SmashEffect extends Entity {
     constructor(_x, _y, _type) {
         super(_x, _y);
-        if (this.type === "fire") {
+        if (_type === "fire") {
             this.image = new ParticleEmitter();
             this.image.setImage(MyGame.imgs["fire_2"]);
             this.image.useFade(1, 0.6);

@@ -62,8 +62,12 @@
     <doorway id="21" x="1832" y="240" stage="37" targetX="1128" targetY="201" />
     <silvercoin id="22" x="1568" y="128" />
     <silvercoin id="23" x="176" y="160" />
-    <shooterplant id="24" x="1344" y="200" />
+    <shooterplant id="24" x="1336" y="200" />
     <lasher id="25" x="744" y="216" />
     <lasher id="26" x="1488" y="192" />
+    <shooterplant id="27" x="520" y="176" />
+    <thornplant id="28" x="152" y="198" />
+    <thornplant id="29" x="256" y="198" />
+    <shooterplant id="30" x="1632" y="200" />
   </entities>
 </level>

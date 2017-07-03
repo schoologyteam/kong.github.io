@@ -37,3 +37,4 @@ class OverWorld extends World {
     }
 }
 OverWorld.playerPoint = new Point(68 * 2, 244 * 2);
+OverWorld.cameFrom = null;

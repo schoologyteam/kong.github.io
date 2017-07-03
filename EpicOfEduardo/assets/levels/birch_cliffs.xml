@@ -255,5 +255,6 @@
     <coppercoin id="88" x="1128" y="432" />
     <coppercoin id="89" x="1144" y="432" />
     <Goal id="90" x="2296" y="24" />
+    <chest id="91" x="1568" y="816" item="0" />
   </entities>
 </level>

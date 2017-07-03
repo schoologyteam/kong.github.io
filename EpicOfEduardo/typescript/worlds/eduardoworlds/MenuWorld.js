@@ -1,4 +1,4 @@
-﻿/* global Entity GameSprite World MyGame GameImage KeyManager OverWorld Eduardo config Coin MouseManager */
+/* global Entity GameSprite World MyGame GameImage KeyManager OverWorld Eduardo config Coin MouseManager */
 class MenuWorld extends World {
     constructor() {
         super();
@@ -7,12 +7,9 @@ class MenuWorld extends World {
             makeSoundLoop(MyGame.snds["Snow"]);
             MyGame.loaded = true;
         }
-	if (MyGame.nowPlaying) {
-
+        if (MyGame.nowPlaying) {
             MyGame.nowPlaying.pause();
-
             MyGame.nowPlaying.currentTime = 0;
-
         }
         this.addEntity(new Entity(0, 0, new GameImage(MyGame.imgs["title_background"])));
         this.title = new Entity(140 * 2, 27 * 2, new GameImage(MyGame.imgs["title_spanish"]));
