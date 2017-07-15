@@ -223,5 +223,7 @@
     <coppercoin id="139" x="2024" y="224" />
     <silvercoin id="140" x="1997" y="187" />
     <Goal id="80" x="40" y="0" />
+    <chest id="110" x="2744" y="456" item="0" />
+    <chest id="141" x="2984" y="264" item="0" />
   </entities>
 </level>

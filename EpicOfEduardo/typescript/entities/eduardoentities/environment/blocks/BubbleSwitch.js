@@ -11,6 +11,9 @@ class BubbleSwitch extends Entity {
     update(_dt) {
         if (!this.pressed) {
             if (this.collideTypes("player", this.x, this.y)) {
+                MyGame.snds["switch_on"].pause();
+                MyGame.snds["switch_on"].currentTime = 0;
+                MyGame.snds["switch_on"].play();
                 this.pressed = true;
                 this.image.currentFrame = 1;
             }

@@ -24,6 +24,7 @@ class Breakable extends Entity {
         this.emitter.update(_dt);
         if (this.iFrames > 0) {
             this.iFrames -= 1;
+            return;
         }
         let hammer = this.collideTypes("hammer", this.x, this.y);
         if (hammer) {
@@ -44,6 +45,9 @@ class Breakable extends Entity {
     onCollision(dmg, _type) {
         if (this.name == "rock" && this.iFrames <= 0 && _type == "hammer") {
             let h = this.image.currentFrame + 1;
+            MyGame.snds["box"].pause();
+            MyGame.snds["box"].currentTime = 0;
+            MyGame.snds["box"].play();
             if (h > 2) {
                 this.setType(null);
                 this.timer = 15;
@@ -51,7 +55,7 @@ class Breakable extends Entity {
             else {
                 this.image.currentFrame = h;
             }
-            this.iFrames = 5;
+            this.iFrames = 4;
             this.emitter.colouredShapeParticle(12, 12);
             this.emitter.colouredShapeParticle(36, 12);
             this.emitter.colouredShapeParticle(12, 36);

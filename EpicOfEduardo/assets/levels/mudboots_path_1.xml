@@ -87,7 +87,7 @@
     <goldcoin id="34" x="4112" y="120" index="3" />
     <platform id="35" x="4032" y="264" width="192" />
     <platform id="36" x="4080" y="192" width="96" />
-    <goldcoin id="37" x="4760" y="248" index="4" />
+    <goldcoin id="37" x="4776" y="240" index="4" />
     <platform id="38" x="4680" y="216" width="216" />
     <thornplant id="39" x="5402" y="294" />
     <slime id="40" x="5432" y="288" />
@@ -140,5 +140,6 @@
     <coppercoin id="87" x="3352" y="272" />
     <coppercoin id="88" x="3376" y="272" />
     <Goal id="89" x="5920" y="168" />
+    <chest id="90" x="4120" y="240" item="0" />
   </entities>
 </level>

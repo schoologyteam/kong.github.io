@@ -108,7 +108,7 @@
     <shooterplant id="43" x="3856" y="128" />
     <thornplant id="44" x="3692" y="318" />
     <thornplant id="45" x="3912" y="318" />
-    <clockbot id="46" x="3816" y="296" drops="0" />
+    <clockbot id="46" x="3832" y="296" drops="0" />
     <silvercoin id="47" x="3672" y="320" />
     <silvercoin id="48" x="3944" y="320" />
     <silvercoin id="49" x="3368" y="384" />
@@ -167,5 +167,8 @@
     <clockbot id="102" x="1976" y="320" drops="0" />
     <clockbot id="103" x="736" y="296" drops="0" />
     <chest id="104" x="3800" y="312" item="8" />
+    <clockbot id="105" x="1112" y="272" drops="0" />
+    <jumprobot id="106" x="2184" y="352" drops="0" />
+    <buzzbot id="107" x="2744" y="304" behavior="Eight" speed="1.3" size="90" drops="0" />
   </entities>
 </level>

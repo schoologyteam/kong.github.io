@@ -69,6 +69,7 @@ class MyGame {
         this.delta = 0;
         this.timer = 0;
         this.lastTime = this.now;
+        MyGame.nowPlaying = MyGame.snds["City"];
         this.gameLoop();
     }
     /**
@@ -99,7 +100,7 @@ class MyGame {
         MouseManager.preUpdate();
         if (MyGame.world) {
             if (KeyManager.pressed(config.muteKey)) {
-                if (this.muted) {
+                if (!MyGame.nowPlaying.volume) {
                     this.unmute();
                 }
                 else {
@@ -169,8 +170,21 @@ class MyGame {
      * Override This: Loads in images and levels.
      */
     loadImages() {
+        this.addSound("box", "./assets/snds/box.ogg");
+        this.addSound("burn", "./assets/snds/burn.ogg");
         this.addSound("City", "./assets/snds/Night_Streets.ogg");
+        this.addSound("coin_copper", "./assets/snds/coin_copper.ogg");
+        this.addSound("coin_gold", "./assets/snds/coin_gold.ogg");
+        this.addSound("coin_silver", "./assets/snds/coin_silver.ogg");
+        this.addSound("hurt", "./assets/snds/hurt.ogg");
+        this.addSound("item_get", "./assets/snds/itemget.ogg");
+        this.addSound("jump", "./assets/snds/jump.ogg");
+        this.addSound("jump_hi", "./assets/snds/jump_hi.ogg");
+        this.addSound("pop", "./assets/snds/pop.ogg");
         this.addSound("Snow", "./assets/snds/On_Your_Feet_Soldier.ogg");
+        this.addSound("spring", "./assets/snds/spring.ogg");
+        this.addSound("switch_off", "./assets/snds/switch_off.ogg");
+        this.addSound("switch_on", "./assets/snds/switch_on.ogg");
         this.addSound("Title", "./assets/snds/The_Onset.ogg");
         //images
         this.addImage("alligator", "./assets/gfx/alligator_72x18x12.png");
@@ -217,6 +231,7 @@ class MyGame {
         this.addImage("hammer_swing", "./assets/gfx/hammer_swing_20x17x6.png");
         this.addImage("heart", "./assets/gfx/heart_24x24x3.png");
         this.addImage("icons", "./assets/gfx/icons_24x24x13.png");
+        this.addImage("james", "./assets/gfx/james_21x30.png");
         this.addImage("jumpbot", "./assets/gfx/jumper_bot_20x32x8.png");
         this.addImage("lasher", "./assets/gfx/lasher_plant_32x48x13.png");
         this.addImage("lasher_vine", "./assets/gfx/lasher_vine_48x48x10.png");
@@ -249,6 +264,7 @@ class MyGame {
         this.addImage("title_background", "./assets/gfx/temp_title_background.png");
         this.addImage("title_english", "./assets/gfx/titlebanner_97x35.png");
         this.addImage("title_spanish", "./assets/gfx/titlespanish_97x35.png");
+        this.addImage("sound_icons", "./assets/gfx/sound_icons_20x20x5.png");
         this.addImage("stock_arrows", "./assets/gfx/stock_arrows_24x24x4.png");
         this.addImage("vibrant_crystal", "./assets/gfx/vibrant_crystal_24x24x8.png");
         this.addImage("wing_boots", "./assets/gfx/wing_boots_24x24.png");
@@ -367,18 +383,20 @@ class MyGame {
         localStorage.setItem("Birch Cliffs", Eduardo.levelCleared["Birch Cliffs"].toString());
         localStorage.setItem("Belle's Bridge", Eduardo.levelCleared["Belle's Bridge"].toString());
         localStorage.setItem("Lost Woods", Eduardo.levelCleared["Lost Woods"].toString());
-        localStorage.setItem("Forest View", Eduardo.levelCleared["Forest View"].toString());
+        localStorage.setItem("Forest's View", Eduardo.levelCleared["Forest's View"].toString());
         localStorage.setItem("Mazey Cave 2", Eduardo.levelCleared["Mazey Cave 2"].toString());
         localStorage.setItem("Ice Peak Cavern", Eduardo.levelCleared["Ice Peak Cavern"].toString());
         localStorage.setItem("Ice Peak Path", Eduardo.levelCleared["Ice Peak Path"].toString());
         localStorage.setItem("Snowdrift Forest", Eduardo.levelCleared["Snowdrift Forest"].toString());
         localStorage.setItem("Logger's Way", Eduardo.levelCleared["Logger's Way"].toString());
         localStorage.setItem("Cold Lake", Eduardo.levelCleared["Cold Lake"].toString());
+        localStorage.setItem("Lake's View", Eduardo.levelCleared["Lake's View"].toString());
         localStorage.setItem("Rocky River", Eduardo.levelCleared["Rocky River"].toString());
         localStorage.setItem("Mudboot's Path", Eduardo.levelCleared["Mudboot's Path"].toString());
         localStorage.setItem("Mudboot's Secret", Eduardo.levelCleared["Mudboot's Secret"].toString());
         localStorage.setItem("Simon's Nase", Eduardo.levelCleared["Simon's Nase"].toString());
         localStorage.setItem("Simon's Swamp", Eduardo.levelCleared["Simon's Swamp"].toString());
+        localStorage.setItem("Swamp's End", Eduardo.levelCleared["Swamp's End"].toString());
         localStorage.setItem("Cursed Mountain", Eduardo.levelCleared["Cursed Mountain"].toString());
         localStorage.setItem("Fake Queen's Castle", Eduardo.levelCleared["Fake Queen's Castle"].toString());
         localStorage.setItem("Abandoned Town", Eduardo.levelCleared["Abandoned Town"].toString());
@@ -420,15 +438,16 @@ class MyGame {
             Eduardo.levelCleared["Birch Cliffs"] = (localStorage.getItem("Birch Cliffs") === "true");
             Eduardo.levelCleared["Belle's Bridge"] = (localStorage.getItem("Belle's Bridge") === "true");
             Eduardo.levelCleared["Lost Woods"] = (localStorage.getItem("Lost Woods") === "true");
-            Eduardo.levelCleared["Forest View"] = (localStorage.getItem("Lost Manor") === "true");
+            Eduardo.levelCleared["Forest's View"] = (localStorage.getItem("Forest's View") === "true");
             Eduardo.levelCleared["Mazey Cave 2"] = (localStorage.getItem("Mazey Cave 2") === "true");
             Eduardo.levelCleared["Ice Peak Cavern"] = (localStorage.getItem("Ice Peak Cavern") === "true");
             Eduardo.levelCleared["Ice Peak Path"] = (localStorage.getItem("Ice Peak Path") === "true");
-            Eduardo.levelCleared["Snowdrift Forest"] = (localStorage.getItem("SnowDrift Forest") === "true");
+            Eduardo.levelCleared["Snowdrift Forest"] = (localStorage.getItem("Snowdrift Forest") === "true");
             Eduardo.levelCleared["Logger's Way"] = (localStorage.getItem("Logger's Way") === "true");
             Eduardo.levelCleared["Cold Lake"] = (localStorage.getItem("Cold Lake") === "true");
+            Eduardo.levelCleared["Lake's View"] = (localStorage.getItem("Lake's View") === "true");
             Eduardo.levelCleared["Rocky River"] = (localStorage.getItem("Rocky River") === "true");
-            Eduardo.levelCleared["Mudboot's Path"] = (localStorage.getItem("Modboot's Path") === "true");
+            Eduardo.levelCleared["Mudboot's Path"] = (localStorage.getItem("Mudboot's Path") === "true");
             Eduardo.levelCleared["Mudboot's Secret"] = (localStorage.getItem("Mudboot's Secret") === "true");
             Eduardo.levelCleared["Simon's Nase"] = (localStorage.getItem("Simon's Nase") === "true");
             Eduardo.levelCleared["Simon's Swamp"] = (localStorage.getItem("Simon's Swamp") === "true");
@@ -484,13 +503,14 @@ class MyGame {
         Eduardo.levelCleared["Birch Cliffs"] = false;
         Eduardo.levelCleared["Belle's Bridge"] = false;
         Eduardo.levelCleared["Lost Woods"] = false;
-        Eduardo.levelCleared["Forest View"] = false;
+        Eduardo.levelCleared["Forest's View"] = false;
         Eduardo.levelCleared["Mazey Cave 2"] = false;
         Eduardo.levelCleared["Ice Peak Cavern"] = false;
         Eduardo.levelCleared["Ice Peak Path"] = false;
         Eduardo.levelCleared["Snowdrift Forest"] = false;
         Eduardo.levelCleared["Logger's Way"] = false;
         Eduardo.levelCleared["Cold Lake"] = false;
+        Eduardo.levelCleared["Lake's View"] = false;
         Eduardo.levelCleared["Rocky River"] = false;
         Eduardo.levelCleared["Mudboot's Path"] = false;
         Eduardo.levelCleared["Mudboot's Secret"] = false;

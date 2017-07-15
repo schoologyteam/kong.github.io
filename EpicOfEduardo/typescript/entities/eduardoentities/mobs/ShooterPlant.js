@@ -86,6 +86,9 @@ class ShooterPlant extends BaseMobile {
         else {
             this.shooting = true;
             this.image.animationFrame = 0;
+            MyGame.snds["pop"].pause();
+            MyGame.snds["pop"].currentTime = 0;
+            MyGame.snds["pop"].play();
             this.world.addEntity(new Bullet(this.x + 40, this.y + 20, 0, 5, this.getDirection()));
             this.timer = 120;
         }
@@ -133,6 +136,9 @@ class ShooterPlant extends BaseMobile {
     }
     onCollision(dmg, _type) {
         if (_type == "fire") {
+            MyGame.snds["burn"].pause();
+            MyGame.snds["burn"].currentTime = 0;
+            MyGame.snds["burn"].play();
             this.alive = false;
             this.burn = true;
             this.timer = 40;

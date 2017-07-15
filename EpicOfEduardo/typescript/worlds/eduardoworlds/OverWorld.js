@@ -2,6 +2,8 @@
 class OverWorld extends World {
     constructor() {
         super();
+        MyGame.nowPlaying.pause();
+        MyGame.nowPlaying.currentTime = 0;
         MyGame.saveGame();
         let t = new TiledImage(MyGame.imgs["TearOfTheStar"], 80, 60, 16);
         let d = MyGame.maps["over_map"].responseXML;
@@ -33,6 +35,7 @@ class OverWorld extends World {
             OverWorld.playerPoint = new Point(68 * 2, 244 * 2);
         }
         this.addEntity(new EduardoMap(OverWorld.playerPoint.x, OverWorld.playerPoint.y));
+        this.addEntity(new SoundIcon());
         Coin.collected = new Array(false, false, false, false, false);
     }
 }

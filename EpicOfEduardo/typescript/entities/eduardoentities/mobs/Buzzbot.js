@@ -7,7 +7,7 @@ class Buzzbot extends BaseMobile {
         this.preferredSpeed = ps;
         this.side = 1;
         this.drops = _d;
-        if (_size < 20 || _size > 120) {
+        if (_size < 20 || _size > 180) {
             this.size = 60;
         }
         else {
@@ -104,6 +104,9 @@ class Buzzbot extends BaseMobile {
             if (this.x > MyGame.camera.x + MyGame.WIDTH / 2) {
                 this.image.playAnimation("left", 15);
                 if (this.timer <= 0) {
+                    MyGame.snds["pop"].pause();
+                    MyGame.snds["pop"].currentTime = 0;
+                    MyGame.snds["pop"].play();
                     this.world.addEntity(new Bullet(this.x + this.width / 2, this.y + this.height / 2, 5, 5, Math.PI));
                     this.timer = 60;
                 }
@@ -111,6 +114,9 @@ class Buzzbot extends BaseMobile {
             else {
                 this.image.playAnimation("right", 15);
                 if (this.timer <= 0) {
+                    MyGame.snds["pop"].pause();
+                    MyGame.snds["pop"].currentTime = 0;
+                    MyGame.snds["pop"].play();
                     this.world.addEntity(new Bullet(this.x + this.width / 2, this.y + this.height / 2, 6, 5, 0));
                     this.timer = 60;
                 }

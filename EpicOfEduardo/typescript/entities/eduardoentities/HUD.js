@@ -72,5 +72,42 @@ class ScreenTransition extends Entity {
         _g.rectangle(this.x + relX, this.y, MyGame.WIDTH, MyGame.HEIGHT);
     }
 }
-
 Eduardo.screenTransition = false;
+
+/* SoundIcon.js */
+class SoundIcon extends Entity {
+    constructor() {
+        super(0, 0);
+        this.x = MyGame.camera.x + MyGame.WIDTH - 30;
+        this.y = MyGame.camera.y + 15;
+        this.image = new GameSprite(MyGame.imgs["sound_icons"], 20, 20);
+    }
+    update(_dt) {
+        if (!MyGame.nowPlaying.volume) {
+            this.image.currentFrame = 1;
+        }
+        else {
+            this.image.currentFrame = 0;
+        }
+        this.x = MyGame.camera.x + MyGame.WIDTH - 30;
+        this.y = MyGame.camera.y + 15;
+        let coords = MouseManager.getFilteredCoords();
+        if (coords.x > this.x && coords.y > this.y && coords.x < this.x + 20 && coords.y < this.y + 20) {
+            if (MouseManager.pressed()) {
+                if (MyGame.nowPlaying.volume) {
+                    for (let sound in MyGame.snds) {
+                        MyGame.snds[sound].volume = 0;
+                        MyGame.snds[sound].pause();
+                        MyGame.snds[sound].currentTime = 0;
+                    }
+                }
+                else {
+                    for (let sound in MyGame.snds) {
+                        MyGame.snds[sound].volume = 1;
+                    }
+                    MyGame.nowPlaying.play();
+                }
+            }
+        }
+    }
+}

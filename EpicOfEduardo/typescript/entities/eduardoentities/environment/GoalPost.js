@@ -8,6 +8,9 @@ class GoalPost extends Item {
     collect() {
         Eduardo.levelCleared[Eduardo.currentLevel] = true;
         Eduardo.hearts += 2;
+        if (Eduardo.hearts > Eduardo.maxHearts) {
+            Eduardo.hearts = Eduardo.maxHearts;
+        }
         this.world.addEntity(new VictoryFanfare(MyGame.camera.x, MyGame.camera.y));
     }
 }

@@ -16,6 +16,7 @@ class PauseWorld extends World {
             this.menuText.push("Continuar");
             this.menuText.push("Salir");
         }
+        this.addEntity(new SoundIcon());
     }
     update(_dt) {
         MyGame.camera.setP(0, 0);

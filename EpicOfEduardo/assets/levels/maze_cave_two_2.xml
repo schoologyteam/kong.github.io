@@ -88,7 +88,7 @@
     <platform id="12" x="192" y="312" width="96" />
     <platform id="13" x="24" y="408" width="120" />
     <chest id="14" x="1160" y="360" item="7" />
-    <bat id="15" x="120" y="384" pattern="Circle" preferredSpeed="1.1" size="90" />
+    <bat id="15" x="120" y="348" pattern="Circle" preferredSpeed="1.15" size="90" />
     <hazards id="16" x="600" y="72" side="top" />
     <hazards id="17" x="888" y="360" side="top" />
     <hazards id="18" x="984" y="336" side="top" />
@@ -116,5 +116,15 @@
     <doorway id="40" x="816" y="120" stage="40" targetX="48" targetY="608" />
     <doorway id="41" x="1080" y="96" stage="40" targetX="504" targetY="560" />
     <platform id="42" x="264" y="456" width="24" />
+    <coppercoin id="43" x="1168" y="488" />
+    <coppercoin id="44" x="1184" y="488" />
+    <coppercoin id="45" x="1200" y="488" />
+    <silvercoin id="46" x="952" y="368" />
+    <coppercoin id="47" x="832" y="488" />
+    <coppercoin id="48" x="816" y="488" />
+    <coppercoin id="49" x="800" y="488" />
+    <silvercoin id="50" x="264" y="288" />
+    <lizard id="51" x="424" y="128" />
+    <silvercoin id="52" x="176" y="72" />
   </entities>
 </level>

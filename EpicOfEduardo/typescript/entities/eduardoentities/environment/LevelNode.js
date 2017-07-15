@@ -97,7 +97,7 @@ class LevelNode extends Entity {
         else if (this.levelName === "Rocky River") {
             _ln = "rocky_river_s1";
             _sx = 7104;
-            _sy = 640;
+            _sy = 840;
             //MyGame.setWorld(new LevelWorld("rocky_river_s1", 7104, 640));
             MyGame.color = "#87CEFA";
         }
@@ -219,8 +219,8 @@ class LevelNode extends Entity {
         }
         else if (this.levelName === "Ice Peak Path") {
             _ln = "ice_path";
-            _sx = 9548;
-            _sy = 400;
+            _sx = 5354 * 2;
+            _sy = 168 * 2;
             MyGame.nowPlaying = MyGame.snds["Snow"];
             MyGame.nowPlaying.play();
             MyGame.color = "#87CEFA";
@@ -249,7 +249,7 @@ class LevelNode extends Entity {
         else if (this.levelName === "Swamp's End") {
             _ln = "swamps_end";
             _sx = 48;
-            _sy = 320;
+            _sy = 524;
             MyGame.color = "#87CEFA";
         }
         else if (this.levelName === "Fake Queen's Castle") {

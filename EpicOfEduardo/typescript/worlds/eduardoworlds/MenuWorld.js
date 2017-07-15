@@ -51,11 +51,16 @@ class MenuWorld extends World {
             }();
         }
         this.loadLanguageSelector();
+        this.addEntity(new SoundIcon());
     }
     update(_dt) {
         super.update(_dt);
         if (this.state != 0) {
             if (MyGame.nowPlaying != MyGame.snds["Title"]) {
+                if (MyGame.nowPlaying) {
+                    MyGame.nowPlaying.pause();
+                    MyGame.nowPlaying.currentTime = 0;
+                }
                 MyGame.nowPlaying = MyGame.snds["Title"];
                 MyGame.nowPlaying.play();
             }

@@ -190,5 +190,6 @@
     <Goal id="122" x="4504" y="312" />
     <buzzbot id="123" x="3904" y="376" behavior="Circle" speed="1" size="30" drops="0" />
     <doorway id="124" x="3696" y="56" stage="25" targetX="186" targetY="216" />
+    <chest id="123" x="3264" y="408" item="0" />
   </entities>
 </level>

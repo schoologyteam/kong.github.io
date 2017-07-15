@@ -87,7 +87,7 @@
     <jumprobot id="32" x="4544" y="328" drops="0" />
     <jumprobot id="33" x="2616" y="256" drops="0" />
     <jumprobot id="34" x="2264" y="304" drops="0" />
-    <buzzbot id="35" x="2336" y="64" behavior="Circle" speed="1" size="90" drops="0" />
+    <buzzbot id="35" x="2336" y="24" behavior="Circle" speed="1.05" size="90" drops="0" />
     <clockbot id="36" x="1703" y="205" drops="0" />
     <lasher id="37" x="864" y="312" />
     <shooterplant id="38" x="696" y="320" />
@@ -103,7 +103,7 @@
     <buzzbot id="47" x="3328" y="264" behavior="Chase" speed="1" size="30" drops="0" />
     <buzzbot id="49" x="3600" y="216" behavior="Chase" speed="1" size="30" drops="0" />
     <clockbot id="50" x="3265" y="327" drops="0" />
-    <buzzbot id="51" x="4576" y="280" behavior="Circle" speed="1" size="90" drops="0" />
+    <buzzbot id="51" x="4592" y="248" behavior="Circle" speed="1" size="90" drops="0" />
     <firehat id="52" x="4408" y="288" drops="True" />
     <chest id="53" x="2720" y="264" item="0" />
     <silvercoin id="54" x="784" y="336" />

@@ -60,7 +60,7 @@ class MouseManager {
                 y: unfilteredY
             };
         };
-        this.getFIlteredCoords = () => {
+        this.getFilteredCoords = () => {
             let rect = canvas.getBoundingClientRect();
             let coords = MouseManager.getRawCoords();
             coords.x = coords.x - rect.left + MyGame.camera.x;

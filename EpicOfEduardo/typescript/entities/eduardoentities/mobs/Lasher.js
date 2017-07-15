@@ -118,6 +118,9 @@ class Lasher extends BaseMobile {
     }
     onCollision(dmg, _type) {
         if (_type == "fire") {
+            MyGame.snds["burn"].pause();
+            MyGame.snds["burn"].currentTime = 0;
+            MyGame.snds["burn"].play();
             this.alive = false;
             this.burn = true;
             this.timer = 30;

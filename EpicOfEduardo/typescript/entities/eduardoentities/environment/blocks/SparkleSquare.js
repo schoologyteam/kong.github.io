@@ -72,6 +72,15 @@ class RoadSign extends Entity {
                     this.text.push(`Tecla dey Arriba, ${config.keyUp}, o ${config.actionKey}: Pasar por la puerta.`);
                 }
                 break;
+            case 4:
+                this.image = new GameImage(MyGame.imgs["james"]);
+                if (MyGame.textLanguage === "English") {
+                    this.text.push(`To buy an item, stand in front of it and press ${config.actionKey}.`);
+                }
+                else {
+                    this.text.push(`Para comprar, camine al articulo i oprima ${config.actionKey}.`);
+                }
+                break;
             default:
         }
         this.setHitBox(48,48);

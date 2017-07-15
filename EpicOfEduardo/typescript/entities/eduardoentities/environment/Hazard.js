@@ -30,6 +30,7 @@ class SmashEffect extends Entity {
             this.image.imageParticle(Math.random() * (52 -16), Math.random() * (38 - 16));
             this.image.imageParticle(Math.random() * (52 -16), Math.random() * (38 - 16));
             this.image.imageParticle(Math.random() * (52 -16), Math.random() * (38 - 16));
+            this.sfx = MyGame.snds["box"];
         }
         else {
             this.image = new ParticleEmitter();
@@ -46,13 +47,19 @@ class SmashEffect extends Entity {
             this.image.colouredShapeParticle(12, 36);
             this.image.colouredShapeParticle(36, 36);
             this.image.colouredShapeParticle(24, 24);
+            this.sfx = MyGame.snds["burn"];
         }
         this.timer = 20;
+        this.sfx.pause();
+        this.sfx.currentTime = 0;
+        this.sfx.play();
     }
     update(_dt) {
         this.image.update(_dt);
         this.timer--;
         if (this.timer <= 0) {
+            this.sfx.pause();
+            this.sfx.currentTime = 0;
             this.destroy();
         }
     }

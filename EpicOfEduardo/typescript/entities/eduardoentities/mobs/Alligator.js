@@ -53,7 +53,7 @@ class Alligator extends BaseMobile {
             return;
         }
         this.image.updateAnimation(_dt);
-        if (!this.collideTypes(["wall", "platform"], this.x + 10 * this.getXSpeed(), this.y + 1) || this.collideTypes(["wall", "enemy"], this.x + this.getXSpeed(), this.y)) {
+        if (!this.collideTypes(["wall", "platform"], this.x + 15 * this.getXSpeed(), this.y + 1) || this.collideTypes(["wall", "enemy"], this.x + this.getXSpeed(), this.y)) {
             if (this.faceRight && !this.turning) {
                 this.setXSpeed(0);
                 this.turning = true;

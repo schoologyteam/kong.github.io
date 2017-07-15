@@ -171,6 +171,9 @@ class Eduardo extends Entity {
         if (other) {
             if (other.getType() === "enemy") {
                 if (this.y + 70 < other.y + 7 + other.height / 3.5) {
+                    MyGame.snds["jump_hi"].pause();
+                    MyGame.snds["jump_hi"].currentTime = 0;
+                    MyGame.snds["jump_hi"].play();
                     other.onCollision(1, "stomp");
                     this.setYSpeed(-10);
                     this.y -= 6;
@@ -181,13 +184,16 @@ class Eduardo extends Entity {
                         this.specialJumpPow += 5;
                     }
                     if (KeyManager.held("ArrowUp") || KeyManager.held("z") || KeyManager.held("c")) {
-                        this.jumpPow = 16;
+                        this.jumpPow = 18;
                     }
                 }
                 else {
                     if (this.iFrames > 0) {
                         return;
                     }
+                    MyGame.snds["hurt"].pause();
+                    MyGame.snds["hurt"].currentTime = 0;
+                    MyGame.snds["hurt"].play();
                     Eduardo.hearts -= 2;
                     Eduardo.powerHits--;
                     this.iFrames = 49;
@@ -208,6 +214,9 @@ class Eduardo extends Entity {
                 if (this.iFrames > 0) {
                     return;
                 }
+                MyGame.snds["hurt"].pause();
+                MyGame.snds["hurt"].currentTime = 0;
+                MyGame.snds["hurt"].play();
                 Eduardo.hearts--;
                 Eduardo.powerHits--;
                 this.iFrames = 49;
@@ -305,8 +314,11 @@ class Eduardo extends Entity {
         }
         if (KeyManager.pressed("ArrowUp") || KeyManager.pressed(config.jumpKey) || KeyManager.pressed("Up") || KeyManager.pressed(config.keyUp)) {
             if (this.onGround) {
+                MyGame.snds["jump"].pause();
+                MyGame.snds["jump"].currentTime = 0;
+                MyGame.snds["jump"].play();
                 this.setYSpeed(-8.5);
-                this.jumpPow = 16;
+                this.jumpPow = 16 + Math.floor(Math.abs(this.getXSpeed() / 6));
                 this.onGround = false;
             }
         }
@@ -365,6 +377,9 @@ class Eduardo extends Entity {
                 this.specialJump = 0;
                 this.specialJumpPow = 16;
                 this.setYSpeed(-6);
+                MyGame.snds["jump_hi"].pause();
+                MyGame.snds["jump_hi"].currentTime = 0;
+                MyGame.snds["jump_hi"].play();
             }
             if (!this.isCrawling) {
                 if (Eduardo.power === 12) {
@@ -454,6 +469,9 @@ class Eduardo extends Entity {
         }
     }
     springJump(_jump) {
+        MyGame.snds["spring"].pause();
+        MyGame.snds["spring"].currentTime = 0;
+        MyGame.snds["spring"].play();
         if (_jump) {
             this.springTime = 25;
         }

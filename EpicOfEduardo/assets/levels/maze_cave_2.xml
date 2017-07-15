@@ -168,5 +168,17 @@
     <platform id="59" x="936" y="624" width="48" />
     <platform id="60" x="864" y="240" width="72" />
     <bat id="61" x="72" y="408" pattern="Circle" preferredSpeed="1.5" size="60" />
+    <silvercoin id="62" x="584" y="368" />
+    <coppercoin id="63" x="760" y="544" />
+    <coppercoin id="64" x="760" y="520" />
+    <coppercoin id="65" x="760" y="496" />
+    <coppercoin id="66" x="760" y="472" />
+    <coppercoin id="67" x="760" y="448" />
+    <coppercoin id="68" x="632" y="104" />
+    <coppercoin id="69" x="632" y="88" />
+    <coppercoin id="70" x="616" y="72" />
+    <coppercoin id="71" x="648" y="72" />
+    <silvercoin id="72" x="912" y="216" />
+    <chest id="73" x="584" y="432" item="0" />
   </entities>
 </level>

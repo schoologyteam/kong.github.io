@@ -7,6 +7,9 @@ class Heart extends Item {
     }
     collect() {
         Eduardo.hearts += 2;
+        MyGame.snds["coin_gold"].pause();
+        MyGame.snds["coin_gold"].currentTime = 0;
+        MyGame.snds["coin_gold"].play();
         if (Eduardo.hearts >= Eduardo.maxHearts) {
             Eduardo.hearts = Eduardo.maxHearts;
         }

@@ -34,6 +34,9 @@ class ShopItem extends Entity {
         if (player) {
             if (KeyManager.pressed("x")) {
                 if (Eduardo.money >= this.price) {
+                    MyGame.snds["coin_silver"].pause();
+                    MyGame.snds["coin_silver"].currentTime = 0;
+                    MyGame.snds["coin_silver"].play();
                     if (this.item > 0) {
                         Eduardo.power = this.item;
                         Eduardo.powerHits = 3;
@@ -46,6 +49,11 @@ class ShopItem extends Entity {
                         }
                     }
                     Eduardo.money -= this.price;
+                }
+                else {
+                    MyGame.snds["hurt"].pause();
+                    MyGame.snds["hurt"].currentTime = 0;
+                    MyGame.snds["hurt"].play();
                 }
             }
         }

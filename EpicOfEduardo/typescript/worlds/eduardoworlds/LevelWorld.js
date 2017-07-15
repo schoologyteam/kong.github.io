@@ -318,6 +318,7 @@ class LevelWorld extends World {
             this.addEntity(new WalkWay(elem[i].getAttribute("stage"), x, y, parseInt(elem[i].getAttribute("targetX"), 10) * 2, parseInt(elem[i].getAttribute("targetY"), 10) * 2, parseInt(elem[i].getAttribute("width"), 10) * 2, parseInt(elem[i].getAttribute("height"), 10) * 2));
         }
         this.addEntity(new Eduardo(_x, _y));
+        this.addEntity(new SoundIcon());
         this.addEntity(new HUD(_x - 300, _y - 200));
     }
 }

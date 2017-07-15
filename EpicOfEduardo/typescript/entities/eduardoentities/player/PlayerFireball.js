@@ -22,6 +22,9 @@ class PlayerFireball extends BaseMobile {
     update(_dt) {
         if (this.checkOnGround() || this.collideTypes("wall", this.x + this.getXSpeed(), this.y) || this.shouldFlare) {
             if (!this.flare) {
+                MyGame.snds["pop"].pause();
+                MyGame.snds["pop"].currentTime = 0;
+                MyGame.snds["pop"].play();
                 this.flare = true;
                 this.image.playAnimation("flare", 20);
                 this.setHitBox(20, 16, 0, 0);
