@@ -135,6 +135,8 @@ class CutScene1 extends World {
                     this.eddy.image.playAnimation("jump_r");
                     break;
                 case 12:
+                    MyGame.nowPlaying.pause();
+                    MyGame.nowPlaying.currentTime = 0;
                     MyGame.color = "#121218";
                     this.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new LevelWorld("cave", 64, 408)));
                     break;
