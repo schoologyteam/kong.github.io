@@ -144,7 +144,7 @@ class LevelNode extends Entity {
         else if (this.levelName === "Logger's Way") {
             _ln = "loggers_way";
             _sx = 8580;
-            _sy = 1864;
+            _sy = 1664;
             MyGame.nowPlaying = MyGame.snds["Mountain"];
             MyGame.nowPlaying.play();
             MyGame.color = "#87CEFA";
