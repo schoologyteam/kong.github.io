@@ -1,4 +1,4 @@
-/* global World */
+﻿/* global World */
 class CutScene1 extends World {
     constructor() {
         super();
