@@ -58,11 +58,33 @@ class Crystal extends Item {
             Eduardo.maxHearts += 2;
             Eduardo.hearts = Eduardo.maxHearts;
             Eduardo.levelCleared[Eduardo.currentLevel] = true;
+            if (MyGame.playerName) {
+                kongregate.stats.submit('Money', Math.min(Eduardo.money, 9999));
+                let lvlclrd = 0;
+                for (let level in Eduardo.levelCleared) {
+                    if (level) {
+                        lvlclrd++;
+                    }
+                }
+                lvlclrd -= 4;
+                kongregate.stats.submit("Levels Cleared", lvlclrd);
+            }
             this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new CutScene2()));
             return;
         }
         Eduardo.levelCleared[Eduardo.currentLevel] = true;
-        Eduardo.hearts += 2;
+        if (MyGame.playerName) {
+            kongregate.stats.submit('Money', Math.min(Eduardo.money, 9999));
+            let lvlclrd = 0;
+            for (let level in Eduardo.levelCleared) {
+                if (level) {
+                    lvlclrd++;
+                }
+            }
+            lvlclrd -= 4;
+            kongregate.stats.submit("Levels Cleared", lvlclrd);
+        }
+        Eduardo.hearts = Eduardo.maxHearts;
         this.world.addEntity(new VictoryFanfare(MyGame.camera.x, MyGame.camera.y));
     }
     update(_dt) {

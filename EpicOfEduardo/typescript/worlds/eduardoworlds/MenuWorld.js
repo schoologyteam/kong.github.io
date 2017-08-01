@@ -5,12 +5,22 @@ class MenuWorld extends World {
         if (!MyGame.loaded) {
             makeSoundLoop(MyGame.snds["City"]);
             makeSoundLoop(MyGame.snds["Snow"]);
+            makeSoundLoop(MyGame.snds["Overworld"]);
+            makeSoundLoop(MyGame.snds["Forest"]);
+            makeSoundLoop(MyGame.snds["Boss"]);
+            makeSoundLoop(MyGame.snds["Mountain"]);
+            makeSoundLoop(MyGame.snds["Haunted"]);
+            makeSoundLoop(MyGame.snds["Cave"]);
+            makeSoundLoop(MyGame.snds["Swamp"]);
+            makeSoundLoop(MyGame.snds["Title"]);
             MyGame.loaded = true;
         }
         if (MyGame.nowPlaying) {
             MyGame.nowPlaying.pause();
             MyGame.nowPlaying.currentTime = 0;
         }
+        MyGame.nowPlaying = MyGame.snds["Title"];
+        MyGame.nowPlaying.play();
         this.addEntity(new Entity(0, 0, new GameImage(MyGame.imgs["title_background"])));
         this.title = new Entity(140 * 2, 27 * 2, new GameImage(MyGame.imgs["title_spanish"]));
         this.arrow = new Entity(120 * 2, 80 * 2, new GameSprite(MyGame.imgs["stock_arrows"], 48, 48));
@@ -55,16 +65,6 @@ class MenuWorld extends World {
     }
     update(_dt) {
         super.update(_dt);
-        if (this.state != 0) {
-            if (MyGame.nowPlaying != MyGame.snds["Title"]) {
-                if (MyGame.nowPlaying) {
-                    MyGame.nowPlaying.pause();
-                    MyGame.nowPlaying.currentTime = 0;
-                }
-                MyGame.nowPlaying = MyGame.snds["Title"];
-                MyGame.nowPlaying.play();
-            }
-        }
         if (KeyManager.pressed("ArrowLeft") || KeyManager.pressed("ArrowUp") || KeyManager.pressed("Left") || KeyManager.pressed("Up") || KeyManager.pressed(config.keyUp) || KeyManager.pressed(config.keyLeft)) {
             this.choice -= 1;
             if (this.choice < 0) {
@@ -323,10 +323,12 @@ class MenuWorld extends World {
             if (MyGame.textLanguage === "English") {
                 this.text.push("Music");
                 this.text.push("Choto The Bright");
+                this.text.push("Snabisch");
             }
             else {
                 this.text.push("Música");
                 this.text.push("Choto The Bright");
+                this.text.push("Snabisch");
             }
         }
         else {
@@ -396,4 +398,46 @@ function makeSoundLoop(_snd) {
         _snd.currentTime = 0;
         _snd.play();
     });
+}
+
+class PreLoadWorld extends World {
+    constructor() {
+        super();
+        this.timer = 0;
+        this.alpha = new Array(5);
+        for (let i = 0; i < 5; i++) {
+            this.alpha[i] = 0;
+        }
+    }
+    update(_dt) {
+        super.update(_dt);
+        this.timer++;
+        for (let i = 0; i < 5; i++) {
+            if (this.timer < i * 60) {
+                this.alpha[i] = 0;
+            }
+            else if (this.timer < (i + 1) * 60) {
+                this.alpha[i] = (this.timer - (i) * 60) / 60;
+            }
+            else if (this.timer < (i + 5) * 60) {
+                this.alpha[i] = 1;
+            }
+            else if (this.timer < (i + 6) * 60) {
+                this.alpha[i] = (60 *(i + 6) - this.timer) / 60;
+            }
+            else {
+                this.alpha[i] = 0;
+            }
+        }
+        if (this.timer >= 600) {
+            MyGame.setWorld(new MenuWorld());
+        }
+    }
+    render(_g) {
+        _g.text("Chance presents", 120, 150, `rgba(255,255,255,${this.alpha[0]})`, "32px Verdana");
+        _g.text("A game by Chance", 120, 200, `rgba(255,255,255,${this.alpha[1]})`, "32px Verdana");
+        _g.text("Featruing Music By",120, 250, `rgba(255,255,255,${this.alpha[2]})`, "32px Verdana");
+        _g.text("Choto The Bright",120, 300, `rgba(255,255,255,${this.alpha[3]})`, "32px Verdana");
+        _g.text("and Snabisch",120, 350, `rgba(255,255,255,${this.alpha[4]})`, "32px Verdana");
+    }
 }

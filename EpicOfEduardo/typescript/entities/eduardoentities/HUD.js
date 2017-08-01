@@ -73,7 +73,6 @@ class ScreenTransition extends Entity {
     }
 }
 Eduardo.screenTransition = false;
-
 /* SoundIcon.js */
 class SoundIcon extends Entity {
     constructor() {
@@ -105,7 +104,9 @@ class SoundIcon extends Entity {
                     for (let sound in MyGame.snds) {
                         MyGame.snds[sound].volume = 1;
                     }
-                    MyGame.nowPlaying.play();
+                    if (MyGame.nowPlaying) {
+                        MyGame.nowPlaying.play();
+                    }
                 }
             }
         }

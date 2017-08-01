@@ -79,7 +79,7 @@ class EduardoMap extends Entity {
                     this.moving = true;
                 }
             }
-            if (KeyManager.held("ArrowDown") || KeyManager.held("Down") || KeyManager.held(config.keyDown)) {
+            else if (KeyManager.held("ArrowDown") || KeyManager.held("Down") || KeyManager.held(config.keyDown)) {
                 if (this.cameFrom === "south") {
                     this.countDown = 0.12;
                     this.cameFrom = "north";
@@ -91,7 +91,7 @@ class EduardoMap extends Entity {
                     this.moving = true;
                 }
             }
-            if (KeyManager.held("ArrowLeft") || KeyManager.held("Left") || KeyManager.held(config.keyLeft)) {
+            else if (KeyManager.held("ArrowLeft") || KeyManager.held("Left") || KeyManager.held(config.keyLeft)) {
                 if (this.cameFrom === "west") {
                     this.countDown = 0.12;
                     this.cameFrom = "east";
@@ -103,7 +103,7 @@ class EduardoMap extends Entity {
                     this.moving = true;
                 }
             }
-            if (KeyManager.held("ArrowRight") || KeyManager.held("Right") ||  KeyManager.held(config.keyRight)) {
+            else if (KeyManager.held("ArrowRight") || KeyManager.held("Right") ||  KeyManager.held(config.keyRight)) {
                 if (this.cameFrom === "east") {
                     this.countDown = 0.12;
                     this.cameFrom = "west";

@@ -76,7 +76,7 @@ class MyGame {
      * Override this to set your own world and other variables.
      */
     onInit() {
-        MyGame.world = new MenuWorld();
+        MyGame.setWorld(new PreLoadWorld());
     }
     update(_dt) {
         this.keyManager.preUpdate(config.keyUp);
@@ -170,22 +170,29 @@ class MyGame {
      * Override This: Loads in images and levels.
      */
     loadImages() {
+        this.addSound("Boss", "./assets/snds/Out_of_place_NES.ogg");
         this.addSound("box", "./assets/snds/box.ogg");
         this.addSound("burn", "./assets/snds/burn.ogg");
+        this.addSound("Cave", "./assets/snds/Innovating_PSG.ogg");
         this.addSound("City", "./assets/snds/Night_Streets.ogg");
         this.addSound("coin_copper", "./assets/snds/coin_copper.ogg");
         this.addSound("coin_gold", "./assets/snds/coin_gold.ogg");
         this.addSound("coin_silver", "./assets/snds/coin_silver.ogg");
+        this.addSound("Forest", "./assets/snds/In_The_Forest.ogg");
+        this.addSound("Haunted", "./assets/snds/Whyte_Wulvves_Complete.ogg");
         this.addSound("hurt", "./assets/snds/hurt.ogg");
         this.addSound("item_get", "./assets/snds/itemget.ogg");
         this.addSound("jump", "./assets/snds/jump.ogg");
         this.addSound("jump_hi", "./assets/snds/jump_hi.ogg");
+        this.addSound("Mountain", "./assets/snds/Frodo.ogg");
+        this.addSound("Overworld", "./assets/snds/Meeting_Place_NES.ogg");
         this.addSound("pop", "./assets/snds/pop.ogg");
         this.addSound("Snow", "./assets/snds/On_Your_Feet_Soldier.ogg");
+        this.addSound("Swamp", "./assets/snds/The_Ugly_Duckling.ogg");
         this.addSound("spring", "./assets/snds/spring.ogg");
         this.addSound("switch_off", "./assets/snds/switch_off.ogg");
         this.addSound("switch_on", "./assets/snds/switch_on.ogg");
-        this.addSound("Title", "./assets/snds/The_Onset.ogg");
+        this.addSound("Title", "./assets/snds/Race_For_The_End_Of_The_World.ogg");
         //images
         this.addImage("alligator", "./assets/gfx/alligator_72x18x12.png");
         this.addImage("amethyst", "./assets/gfx/amethyst_16x16x3.png");
@@ -347,7 +354,6 @@ class MyGame {
     }
     imageLoaded() {
         this.imgCount += 1;
-        console.log(this.imgCount, this.imgsToLoad);
         if (this.imgCount >= this.imgsToLoad && !this.running) {
             this.loadLevels();
         }
@@ -549,7 +555,9 @@ class MyGame {
         for (let sound in MyGame.snds) {
             MyGame.snds[sound].volume = 1;
         }
-        MyGame.nowPlaying.play();
+        if (MyGame.nowPlaying) {
+            MyGame.nowPlaying.play();
+        }
         this.muted = false;
     }
 }
@@ -565,7 +573,22 @@ MyGame.snds = [];
 MyGame.nowPlaying = null;
 MyGame.textLanguage = "English";
 let config = {};
-window.onload = () => {
+window.onload = function() {
+    try {
+        let test = () => {
+            console.log(`Hi mom!`);
+        };
+        test();
+    }
+    catch (e) {
+        alert("Hi! We've detected an outdated or unsupported browser. For your security (and to play this game), it is highly recommended that you upgrade your browser to the latest version of Chrome, Firefox, or Microsoft Edge.");
+    }
+    kongregateAPI.loadAPI(function(){
+        window.kongregate = kongregateAPI.getAPI();
+        kongregate.services.addEventListener('login', function(){
+            MyGame.playerName = kongregate.services.getUsername();
+        });
+    });
     var myGame = new MyGame();
     myGame.imgCount = 0;
     myGame.loadImages();

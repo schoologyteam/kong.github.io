@@ -2,6 +2,10 @@
 class Witch extends BaseMobile {
     constructor(_x, _y) {
         super(_x, _y);
+        MyGame.nowPlaying.pause();
+        MyGame.nowPlaying.currentTime = 0;
+        MyGame.nowPlaying = MyGame.snds["Boss"];
+        MyGame.nowPlaying.play();
         this.target = null;
         this.health = 24;
         this.friction = 0.1;

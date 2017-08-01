@@ -131,9 +131,9 @@
     <bat id="24" x="760" y="336" pattern="Circle" preferredSpeed="1.5" size="50" />
     <spring id="25" x="744" y="552" />
     <spring id="26" x="408" y="312" />
-    <clockbot id="22" x="552" y="416" drops="0" />
+    <clockbot id="22" x="552" y="415" drops="0" />
     <lizard id="27" x="864" y="560" />
-    <clockbot id="29" x="88" y="488" drops="0" />
+    <clockbot id="29" x="88" y="487" drops="0" />
     <lizard id="30" x="360" y="584" />
     <bat id="31" x="352" y="480" pattern="Circle" preferredSpeed="2" size="70" />
     <doorway id="10" x="96" y="712" stage="30" targetX="2280" targetY="560" />

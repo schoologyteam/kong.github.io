@@ -135,6 +135,10 @@ class CutScene1 extends World {
                     this.eddy.image.playAnimation("jump_r");
                     break;
                 case 12:
+                    MyGame.nowPlaying.pause();
+                    MyGame.nowPlaying.currentTime = 0;
+                    MyGame.nowPlaying = MyGame.snds["Cave"];
+                    MyGame.nowPlaying.play();
                     MyGame.color = "#121218";
                     this.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new LevelWorld("cave", 64, 408)));
                     break;
@@ -202,6 +206,8 @@ class CutScene1 extends World {
 class CutScene2 extends World {
     constructor() {
         super();
+        MyGame.nowPlaying.pause();
+        MyGame.nowPlaying.currentTime = 0;
         this.act = 0;
         this.timer = 40;
         let mapXML = MyGame.maps["cutscene_2"].responseXML;

@@ -23,12 +23,13 @@ class SparkleSquare extends Entity {
         }
     }
 }
-
+/* RoadSign.js */
 class RoadSign extends Entity {
     constructor(_x, _y, _id) {
         super(_x, _y);
         this.text = new Array();
         this.image = new GameImage(MyGame.imgs["sign"]);
+        this.setHitBox(48, 48);
         switch (_id) {
             case 0:
                 if (MyGame.textLanguage === "English") {
@@ -74,6 +75,7 @@ class RoadSign extends Entity {
                 break;
             case 4:
                 this.image = new GameImage(MyGame.imgs["james"]);
+                this.setHitBox(96, 48, -24, 0);
                 if (MyGame.textLanguage === "English") {
                     this.text.push(`To buy an item, stand in front of it and press ${config.actionKey}.`);
                 }
@@ -83,7 +85,6 @@ class RoadSign extends Entity {
                 break;
             default:
         }
-        this.setHitBox(48,48);
     }
     render(_g) {
         super.render(_g);

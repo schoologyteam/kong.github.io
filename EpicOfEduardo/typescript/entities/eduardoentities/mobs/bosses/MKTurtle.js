@@ -2,6 +2,10 @@
 class MKTurtle extends BaseMobile {
     constructor(_x, _y) {
         super(_x, _y);
+        MyGame.nowPlaying.pause();
+        MyGame.nowPlaying.currentTime = 0;
+        MyGame.nowPlaying = MyGame.snds["Boss"];
+        MyGame.nowPlaying.play();
         this.faceRight = false;
         this.image = new GameSprite(MyGame.imgs["mk_turtle"], 144, 192);
         this.image.addAnimation("bullets", [0, 1, 0]);

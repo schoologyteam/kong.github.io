@@ -7,6 +7,17 @@ class GoalPost extends Item {
     }
     collect() {
         Eduardo.levelCleared[Eduardo.currentLevel] = true;
+        if (MyGame.playerName) {
+            kongregate.stats.submit('Money', Math.min(Eduardo.money, 9999));
+            let lvlclrd = 0;
+            for (let level in Eduardo.levelCleared) {
+                if (level) {
+                    lvlclrd++;
+                }
+            }
+            lvlclrd -= 4;
+            kongregate.stats.submit("Levels Cleared", lvlclrd);
+        }
         Eduardo.hearts += 2;
         if (Eduardo.hearts > Eduardo.maxHearts) {
             Eduardo.hearts = Eduardo.maxHearts;
@@ -22,7 +33,7 @@ class VictoryFanfare extends Entity {
             this.text = "Victory";
         }
         else {
-            this.text = "Victoria";
+            this.text = "La Victoria";
         }
         this.image = {};
         this.image.list = [];
