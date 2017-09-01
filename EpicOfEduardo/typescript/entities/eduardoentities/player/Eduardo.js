@@ -141,7 +141,7 @@ class Eduardo extends Entity {
                 this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
             }
             else {
-                this.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new LevelWorld("cave", 64, 408)));
+                this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new LevelWorld("cave", 64, 408)));
             }
         }
         else if (this.x + 48 < 0 || this.x > this.world.width) {
