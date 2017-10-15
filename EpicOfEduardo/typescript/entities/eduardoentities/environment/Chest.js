@@ -23,12 +23,15 @@ class Chest extends Entity {
                 dir = 1;
             }
             if (KeyManager.pressed(config.actionKey)) {
+                MyGame.snds["box"].pause();
+                MyGame.snds["box"].currentTime = 0;
+                MyGame.snds["box"].play();
                 this.opened = 1;
                 if (this.contents === 0) {
-                    this.world.addEntity(new Heart(player.x + 60 * dir, this.y));
+                    this.world.addEntity(new Heart(player.x + 68 * dir, this.y));
                 }
                 else if (this.contents <= 12) {
-                    this.world.addEntity(new PowerUp(player.x + 60 * dir, this.y, this.contents));
+                    this.world.addEntity(new PowerUp(player.x + 68 * dir, this.y, this.contents));
                 }
             }
         }

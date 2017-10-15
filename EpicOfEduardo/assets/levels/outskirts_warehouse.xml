@@ -174,7 +174,8 @@
     <clockbot id="88" x="32" y="488" drops="0" />
     <clockbot id="89" x="32" y="272" drops="0" />
     <doorway id="90" x="288" y="88" stage="8" targetX="1584" targetY="488" />
-    <goldcoin id="91" x="72" y="552" index="0" />
+    <goldcoin id="91" x="72" y="552" index="2" />
     <silvercoin id="92" x="416" y="584" />
+    <chest id="93" x="312" y="576" item="8" />
   </entities>
 </level>

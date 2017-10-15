@@ -19,6 +19,9 @@ class PowderBall extends BaseMobile {
     update(_dt) {
         if (this.checkOnGround() || this.collideTypes("wall", this.x + this.getXSpeed(), this.y) || this.shouldFlare) {
             if (!this.flare) {
+                MyGame.snds["pop"].pause();
+                MyGame.snds["pop"].currentTime = 0;
+                MyGame.snds["pop"].play();
                 this.flare = true;
                 this.image = new GameSprite(MyGame.imgs["lock"], 16, 16);
                 this.image.addAnimation("poof", [1, 2, 3, 3]);

@@ -2,6 +2,11 @@
 class OverWorld extends World {
     constructor() {
         super();
+        MyGame.nowPlaying.pause();
+        MyGame.snds["Title"].pause();
+        MyGame.nowPlaying.currentTime = 0;
+        MyGame.nowPlaying = MyGame.snds["Overworld"];
+        MyGame.nowPlaying.play();
         MyGame.saveGame();
         let t = new TiledImage(MyGame.imgs["TearOfTheStar"], 80, 60, 16);
         let d = MyGame.maps["over_map"].responseXML;
@@ -29,9 +34,13 @@ class OverWorld extends World {
             b.setType("block");
             this.addEntity(b);
         }
+        if (!OverWorld.playerPoint.x) {
+            OverWorld.playerPoint = new Point(68 * 2, 244 * 2);
+        }
         this.addEntity(new EduardoMap(OverWorld.playerPoint.x, OverWorld.playerPoint.y));
+        this.addEntity(new SoundIcon());
         Coin.collected = new Array(false, false, false, false, false);
     }
 }
 OverWorld.playerPoint = new Point(68 * 2, 244 * 2);
-//OverWorld.playerPoint = new Point(68 * 2, 244 * 2); 
+OverWorld.cameFrom = null;

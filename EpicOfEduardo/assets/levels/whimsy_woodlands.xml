@@ -103,7 +103,7 @@
     <platform id="8" x="1176" y="624" width="96" />
     <platform id="9" x="1312" y="552" width="88" />
     <platform id="10" x="1192" y="456" width="40" />
-    <buzzbot id="11" x="1472" y="509" behavior="Shoot" speed="2" size="45" drops="0" />
+    <buzzbot id="11" x="1472" y="500" behavior="Circle" speed="2" size="45" drops="0" />
     <platform id="12" x="1576" y="480" width="88" />
     <platform id="13" x="1800" y="512" width="144" />
     <platform id="14" x="2032" y="408" width="40" />
@@ -124,7 +124,7 @@
     <shooterplant id="29" x="2600" y="560" />
     <shooterplant id="30" x="2760" y="560" />
     <platform id="31" x="4728" y="440" width="72" />
-    <buzzbot id="32" x="1240" y="544" behavior="Left" speed="1.5" size="30" drops="0" />
+    <buzzbot id="32" x="1288" y="544" behavior="Left" speed="1.5" size="30" drops="0" />
     <chest id="33" x="1256" y="648" item="3" />
     <chest id="34" x="2168" y="552" item="12" />
     <lasher id="35" x="2000" y="528" />
@@ -156,8 +156,8 @@
     <coppercoin id="61" x="2720" y="448" />
     <silvercoin id="62" x="696" y="480" />
     <firehat id="63" x="864" y="528" drops="False" />
-    <lasher id="64" x="3088" y="504" />
-    <lasher id="65" x="3256" y="504" />
+    <lasher id="64" x="3080" y="504" />
+    <lasher id="65" x="3264" y="504" />
     <thornplant id="66" x="2322" y="535" />
     <thornplant id="67" x="2927" y="510" />
     <thornplant id="68" x="4253" y="510" />
@@ -173,8 +173,9 @@
     <coppercoin id="78" x="3560" y="472" />
     <coppercoin id="79" x="3592" y="472" />
     <coppercoin id="80" x="3608" y="472" />
-    <buzzbot id="81" x="3224" y="496" behavior="Left" speed="1" size="30" drops="0" />
+    <buzzbot id="81" x="3298" y="480" behavior="Left" speed="1" size="30" drops="0" />
     <goldcoin id="82" x="2688" y="504" index="3" />
     <Goal id="83" x="4936" y="336" />
+    <chest id="33" x="3160" y="528" item="0" />
   </entities>
 </level>

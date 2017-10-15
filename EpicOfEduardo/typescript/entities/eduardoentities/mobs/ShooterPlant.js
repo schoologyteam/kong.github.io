@@ -15,13 +15,23 @@ class ShooterPlant extends BaseMobile {
         this.image.addAnimation("idle_br", [12, 13, 12, 14]);
         this.image.addAnimation("attack_br", [12, 15, 14]);
         this.setType("plant");
-        this.width = 40;
-        this.height = 40;
+        this.width = 80;
+        this.height = 80;
         this.mask = new HitBox(this.x + 2, this.y + 2, 76, 78);
         this.health = 2;
         this.playIdle();
     }
+    added() {
+        this.particles = new ParticleEmitter();
+        this.particles.setImage(MyGame.imgs["fire_2"]);
+        this.particles.useFade(1, 0.6);
+        this.particles.setMotion(20, 4 / 3 * Math.PI, 40, 5 /3 * Math.PI);
+        this.particles.setLife(0.10, 0.25);
+        this.particles.setLocalPosition(this.x, this.y);
+        this.particles.setUseLocal(true);
+    }
     update(_dt) {
+        this.particles.update(_dt);
         if (!this.alive) {
             if (this.visible) {
                 this.visible = false;
@@ -34,7 +44,8 @@ class ShooterPlant extends BaseMobile {
             }
             if (this.burn) {
                 this.timer -= 1;
-                if (this.timer % 3 == 0) {
+                if (this.timer >= 10) {
+                    this.particles.imageParticle(Math.random() * (this.width -16), Math.random() * (this.height - 16));
                 }
                 if (this.timer <= 0) {
                     this.destroy();
@@ -75,6 +86,9 @@ class ShooterPlant extends BaseMobile {
         else {
             this.shooting = true;
             this.image.animationFrame = 0;
+            MyGame.snds["pop"].pause();
+            MyGame.snds["pop"].currentTime = 0;
+            MyGame.snds["pop"].play();
             this.world.addEntity(new Bullet(this.x + 40, this.y + 20, 0, 5, this.getDirection()));
             this.timer = 120;
         }
@@ -84,6 +98,10 @@ class ShooterPlant extends BaseMobile {
         else {
             this.playIdle();
         }
+    }
+    render(_g) {
+        super.render(_g);
+        this.particles.render(_g);
     }
     playIdle() {
         if (this.getDirection() >= 0 && this.getDirection() < Math.PI / 2) {
@@ -118,9 +136,12 @@ class ShooterPlant extends BaseMobile {
     }
     onCollision(dmg, _type) {
         if (_type == "fire") {
+            MyGame.snds["burn"].pause();
+            MyGame.snds["burn"].currentTime = 0;
+            MyGame.snds["burn"].play();
             this.alive = false;
             this.burn = true;
-            this.timer = 30;
+            this.timer = 40;
         }
         else {
             if (this.invFrames > 0) {

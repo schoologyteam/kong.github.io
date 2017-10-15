@@ -135,7 +135,7 @@
     <buzzbot id="70" x="1816" y="240" behavior="Shoot" speed="1.1" size="75" drops="0" />
     <clockbot id="71" x="3752" y="296" drops="0" />
     <jumprobot id="72" x="3832" y="304" drops="0" />
-    <jumprobot id="73" x="3664" y="304" drops="0" />
+    <chest id="73" x="4128" y="336" item="0" />
     <thornplant id="74" x="4300" y="319" />
     <thornplant id="75" x="4005" y="366" />
     <coppercoin id="76" x="280" y="336" />
@@ -181,5 +181,6 @@
     <silvercoin id="116" x="3736" y="208" />
     <coppercoin id="117" x="4312" y="296" />
     <coppercoin id="118" x="4304" y="288" />
+    <Goal id="119" x="4712" y="216" />
   </entities>
 </level>

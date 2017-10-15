@@ -184,7 +184,7 @@
     <buzzbot id="119" x="4688" y="384" behavior="Circle" speed="1" size="20" drops="0" />
     <buzzbot id="120" x="4120" y="216" behavior="Shoot" speed="1" size="70" drops="0" />
     <buzzbot id="121" x="928" y="152" behavior="Circle" speed="1" size="100" drops="0" />
-    <buzzbot id="122" x="2664" y="232" behavior="Chase" speed="1.5" size="30" drops="0" />
+    <buzzbot id="122" x="2696" y="216" behavior="Left" speed="1.4" size="30" drops="0" />
     <buzzbot id="123" x="3608" y="360" behavior="Shoot" speed="1" size="20" drops="0" />
     <goldcoin id="124" x="144" y="72" index="0" />
     <goldcoin id="125" x="336" y="360" index="1" />

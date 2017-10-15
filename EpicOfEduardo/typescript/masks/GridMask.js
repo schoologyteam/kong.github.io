@@ -43,7 +43,7 @@ class GridMask extends Mask {
                     continue;
                 }
                 let k = this.tiledWidth * j + i;
-                if (this.tiles[k] == 1) {
+                if (this.tiles[k] === 1) {
                     return true;
                 }
             }

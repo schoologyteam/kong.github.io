@@ -26,7 +26,7 @@ class Eduardo extends Entity {
         this.addCostume("eddy_fire");
         this.setType("player");
         this.name = "Eduardo";
-        this.image = this.costume[this.index[Eduardo.power]];
+        this.selectCostume();
         this.image.playAnimation("right");
         this.offsetX = 8;
         this.width = 44;
@@ -34,6 +34,7 @@ class Eduardo extends Entity {
         this.mask = this.mainHitBox;
         this.crawlHitBox = new HitBox(this.x + this.offsetX, this.y + 30, this.width, 40);
         this.platformSweepHitBox = new HitBox(this.x + this.offsetX, this.y + 60, this.width, 10);
+        this.victoryTimer = 0;
     }
     addCostume(cs) {
         let s = new GameSprite(MyGame.imgs[cs], 62, 70);
@@ -126,10 +127,22 @@ class Eduardo extends Entity {
         this.mask.update(this.x + this.offsetX, this.y + this.offsetY);
     }
     collisions() {
+        if (this.victoryTimer > 0) {
+            this.victoryTimer--;
+            if (this.victoryTimer <= 20) {
+                this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
+            }
+            return;
+        }
         if (this.y > this.world.height || Eduardo.hearts <= 0) {
             Eduardo.hearts = 6;
             Eduardo.power = 0;
-            this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
+            if (Eduardo.levelCleared["Mystic Cave"]) {
+                this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
+            }
+            else {
+                this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new LevelWorld("cave", 64, 408)));
+            }
         }
         else if (this.x + 48 < 0 || this.x > this.world.width) {
             this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
@@ -137,7 +150,10 @@ class Eduardo extends Entity {
         let item = this.collideTypes("item", this.x, this.y);
         if (item) {
             item.collect();
-            this.image = this.costume[this.index[Eduardo.power]];
+            if (item instanceof GoalPost || item instanceof Crystal) {
+                this.victoryTimer = 65;
+            }
+            this.selectCostume();
         }
         if (this.iFrames > 0) {
             if (this.visible) {
@@ -147,7 +163,7 @@ class Eduardo extends Entity {
                 this.visible = true;
             }
             this.iFrames -= 1;
-            if (this.iFrames <= 0) {
+            if (this.iFrames <= 3) {
                 this.visible = true;
             }
         }
@@ -155,6 +171,9 @@ class Eduardo extends Entity {
         if (other) {
             if (other.getType() === "enemy") {
                 if (this.y + 70 < other.y + 7 + other.height / 3.5) {
+                    MyGame.snds["jump_hi"].pause();
+                    MyGame.snds["jump_hi"].currentTime = 0;
+                    MyGame.snds["jump_hi"].play();
                     other.onCollision(1, "stomp");
                     this.setYSpeed(-10);
                     this.y -= 6;
@@ -165,19 +184,22 @@ class Eduardo extends Entity {
                         this.specialJumpPow += 5;
                     }
                     if (KeyManager.held("ArrowUp") || KeyManager.held("z") || KeyManager.held("c")) {
-                        this.jumpPow = 16;
+                        this.jumpPow = 18;
                     }
                 }
                 else {
                     if (this.iFrames > 0) {
                         return;
                     }
+                    MyGame.snds["hurt"].pause();
+                    MyGame.snds["hurt"].currentTime = 0;
+                    MyGame.snds["hurt"].play();
                     Eduardo.hearts -= 2;
                     Eduardo.powerHits--;
-                    this.iFrames = 46;
+                    this.iFrames = 49;
                     if (Eduardo.powerHits <= 0) {
                         Eduardo.power = 0;
-                        this.image = this.costume[0];
+                        this.image = this.costume[this.index[Eduardo.power]];
                     }
                     if (other.x + other.width / 2 > this.x + 27) {
                         this.setXSpeed(-4);
@@ -192,15 +214,18 @@ class Eduardo extends Entity {
                 if (this.iFrames > 0) {
                     return;
                 }
+                MyGame.snds["hurt"].pause();
+                MyGame.snds["hurt"].currentTime = 0;
+                MyGame.snds["hurt"].play();
                 Eduardo.hearts--;
                 Eduardo.powerHits--;
-                this.iFrames = 46;
+                this.iFrames = 49;
                 if (other.getType() === "slime" || other.getType() === "plant") {
                     Eduardo.hearts--;
                 }
                 if (Eduardo.powerHits <= 0) {
                     Eduardo.power = 0;
-                    this.image = this.costume[0];
+                    this.selectCostume();
                 }
                 if (other.x + other.width / 2 > this.x + 27) {
                     this.setXSpeed(-6);
@@ -249,6 +274,11 @@ class Eduardo extends Entity {
         }
     }
     controls() {
+        if (this.victoryTimer > 0) {
+            this.setXSpeed(this.getXSpeed()*0.9);
+            this.setStandAnim();
+            return;
+        }
         let keyDown = false;
         if (KeyManager.held("ArrowLeft") || KeyManager.held("Left") || KeyManager.held(config.keyLeft)) {
             this.friction = 0.1;
@@ -284,8 +314,11 @@ class Eduardo extends Entity {
         }
         if (KeyManager.pressed("ArrowUp") || KeyManager.pressed(config.jumpKey) || KeyManager.pressed("Up") || KeyManager.pressed(config.keyUp)) {
             if (this.onGround) {
+                MyGame.snds["jump"].pause();
+                MyGame.snds["jump"].currentTime = 0;
+                MyGame.snds["jump"].play();
                 this.setYSpeed(-8.5);
-                this.jumpPow = 16;
+                this.jumpPow = 16 + Math.floor(Math.abs(this.getXSpeed() / 6));
                 this.onGround = false;
             }
         }
@@ -337,20 +370,16 @@ class Eduardo extends Entity {
             }
         }
         if (!keyDown) {
-            if (this.onGround && !this.attacking) {
-                if (this.faceRight) {
-                    this.image.playAnimation("stand_r");
-                }
-                else {
-                    this.image.playAnimation("stand_l");
-                }
-            }
+            this.setStandAnim();
         }
         if (KeyManager.pressed(config.actionKey) && this.cooldown <= 0) {
             if (Eduardo.power === 3 && this.specialJump === 1) {
                 this.specialJump = 0;
                 this.specialJumpPow = 16;
                 this.setYSpeed(-6);
+                MyGame.snds["jump_hi"].pause();
+                MyGame.snds["jump_hi"].currentTime = 0;
+                MyGame.snds["jump_hi"].play();
             }
             if (!this.isCrawling) {
                 if (Eduardo.power === 12) {
@@ -440,6 +469,9 @@ class Eduardo extends Entity {
         }
     }
     springJump(_jump) {
+        MyGame.snds["spring"].pause();
+        MyGame.snds["spring"].currentTime = 0;
+        MyGame.snds["spring"].play();
         if (_jump) {
             this.springTime = 25;
         }
@@ -464,6 +496,9 @@ class Eduardo extends Entity {
             this.friction = 0.02;
         }
     }
+    selectCostume() {
+        this.image = this.costume[this.index[Eduardo.power]];
+    }
     selectHitBox(_hb) {
         if (_hb === "main") {
             this.mask = this.mainHitBox;
@@ -476,6 +511,16 @@ class Eduardo extends Entity {
         else if (_hb === "pfs") {
             this.mask = this.platformSweepHitBox;
             this.offsetY = 60;
+        }
+    }
+    setStandAnim() {
+        if (this.onGround && !this.attacking) {
+            if (this.faceRight) {
+                this.image.playAnimation("stand_r");
+            }
+            else {
+                this.image.playAnimation("stand_l");
+            }
         }
     }
 }

@@ -43,7 +43,7 @@ class FireHat extends BaseMobile {
             }
             return;
         }
-        else if (this.y < MyGame.camera.y - MyGame.HEIGHT || this.x < MyGame.camera.x - MyGame.WIDTH || this.y > MyGame.camera.y + MyGame.HEIGHT * 2 || this.x > MyGame.camera.x + MyGame.WIDTH * 2) {
+        else if (this.y < MyGame.camera.y - MyGame.HEIGHT / 2 || this.x < MyGame.camera.x - MyGame.WIDTH / 2 || this.y > MyGame.camera.y + MyGame.HEIGHT * 3 / 2 || this.x > MyGame.camera.x + MyGame.WIDTH * 3 / 2) {
             return;
         }
         this.image.updateAnimation(_dt);
@@ -90,7 +90,7 @@ class FireHat extends BaseMobile {
                 else if (this.shooting) {
                     if (this.image.animationFrame == 3) {
                         this.shooting = false;
-                        this.timer = 70;
+                        this.timer = 75;
                         this.world.addEntity(new Bullet(this.x, this.y, 1, 6, Math.atan2(-70, this.target.x - this.x)));
                     }
                 }

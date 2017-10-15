@@ -16,6 +16,7 @@ class PauseWorld extends World {
             this.menuText.push("Continuar");
             this.menuText.push("Salir");
         }
+        this.addEntity(new SoundIcon());
     }
     update(_dt) {
         MyGame.camera.setP(0, 0);
@@ -47,8 +48,10 @@ class PauseWorld extends World {
     }
     render(_g) {
         super.render(_g);
+        _g.rectangle(48, 48, MyGame.WIDTH - 96, MyGame.HEIGHT - 96);
         for (let i = 0; i < 2; i++) {
             _g.text(this.menuText[i], 250, 146 + 70 * i);
         }
+        this.selectorIcon.render(_g);
     }
 }

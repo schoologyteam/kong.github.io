@@ -125,15 +125,60 @@ class DoorWay extends Entity {
         else if (_s == 39) {
             this.stage = "yeti_arena";
         }
+        else if (_s == 40) {
+            this.stage = "maze_cave_two_1";
+        }
+        else if (_s == 41) {
+            this.stage = "maze_cave_two_2";
+        }
+        else if (_s == 42) {
+            this.stage = "chapel_outside";
+        }
+        else if (_s == 43) {
+            this.stage = "chapel_interior";
+        }
+        else if (_s == 44) {
+            this.stage = "celler";
+        }
+        else if (_s == 45) {
+            this.stage = "abandoned_town";
+        }
+        else if (_s == 46) {
+            this.stage = "passage_way";
+        }
+        else if (_s == 47) {
+            this.stage = "abandoned_shop";
+        }
+        else if (_s == 48) {
+            this.stage = "castle_entrance";
+        }
+        else if (_s == 49) {
+            this.stage = "castle_1";
+        }
+        else if (_s == 50) {
+            this.stage = "castle_jbr";
+        }
+        else if (_s == 51) {
+            this.stage = "castle_2";
+        }
+        else if (_s == 52) {
+            this.stage = "castle_abr";
+        }
+        else if (_s == 53) {
+            this.stage = "witch_arena";
+        }
     }
     update() {
         if (this.collideTypes("player", this.x, this.y)) {
             if (KeyManager.pressed(config.actionKey) || KeyManager.pressed("ArrowUp") || KeyManager.pressed(config.keyUp)) {
-                if (this.stage === "cursed_mountain") {
+                if (this.stage === "cursed_mountain" || this.stage === "abandoned_town") {
                     MyGame.color = "#87CEFA";
                 }
-                if (this.stage === "cursed_cave" || this.stage === "city_secret") {
+                if (this.stage === "cursed_cave" || this.stage === "city_secret" || this.stage === "passage_way") {
                     MyGame.color = "#191213";
+                }
+                if (this.stage === "abandoned_shop") {
+                    MyGame.color = "#FBA561";
                 }
                 this.world.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new LevelWorld(this.stage, this.targetX, this.targetY)));
             }

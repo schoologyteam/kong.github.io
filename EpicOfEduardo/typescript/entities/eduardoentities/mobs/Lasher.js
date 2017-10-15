@@ -18,7 +18,17 @@ class Lasher extends BaseMobile {
         this.recharge = false;
         this.timer = 30;
     }
+    added() {
+        this.particles = new ParticleEmitter();
+        this.particles.setImage(MyGame.imgs["fire_2"]);
+        this.particles.useFade(1, 0.6);
+        this.particles.setMotion(20, 4 / 3 * Math.PI, 40, 5 /3 * Math.PI);
+        this.particles.setLife(0.10, 0.25);
+        this.particles.setLocalPosition(this.x, this.y);
+        this.particles.setUseLocal(true);
+    }
     update(_dt) {
+        this.particles.update(_dt);
         if (!this.alive) {
             if (this.visible) {
                 this.visible = false;
@@ -31,7 +41,8 @@ class Lasher extends BaseMobile {
             }
             if (this.burn) {
                 this.timer -= 1;
-                if (this.timer % 3 == 0) {
+                if (this.timer >= 10) {
+                    this.particles.imageParticle(Math.random() * (this.width -16), Math.random() * (this.height - 16));
                 }
                 if (this.timer <= 0) {
                     this.destroy();
@@ -101,8 +112,15 @@ class Lasher extends BaseMobile {
             }
         }
     }
+    render(_g) {
+        super.render(_g);
+        this.particles.render(_g);
+    }
     onCollision(dmg, _type) {
         if (_type == "fire") {
+            MyGame.snds["burn"].pause();
+            MyGame.snds["burn"].currentTime = 0;
+            MyGame.snds["burn"].play();
             this.alive = false;
             this.burn = true;
             this.timer = 30;

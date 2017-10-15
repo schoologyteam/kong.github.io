@@ -131,9 +131,9 @@
     <bat id="24" x="760" y="336" pattern="Circle" preferredSpeed="1.5" size="50" />
     <spring id="25" x="744" y="552" />
     <spring id="26" x="408" y="312" />
-    <clockbot id="22" x="552" y="416" drops="0" />
+    <clockbot id="22" x="552" y="415" drops="0" />
     <lizard id="27" x="864" y="560" />
-    <clockbot id="29" x="88" y="488" drops="0" />
+    <clockbot id="29" x="88" y="487" drops="0" />
     <lizard id="30" x="360" y="584" />
     <bat id="31" x="352" y="480" pattern="Circle" preferredSpeed="2" size="70" />
     <doorway id="10" x="96" y="712" stage="30" targetX="2280" targetY="560" />
@@ -167,5 +167,18 @@
     <platform id="58" x="792" y="672" width="72" />
     <platform id="59" x="936" y="624" width="48" />
     <platform id="60" x="864" y="240" width="72" />
+    <bat id="61" x="72" y="408" pattern="Circle" preferredSpeed="1.5" size="60" />
+    <silvercoin id="62" x="584" y="368" />
+    <coppercoin id="63" x="760" y="544" />
+    <coppercoin id="64" x="760" y="520" />
+    <coppercoin id="65" x="760" y="496" />
+    <coppercoin id="66" x="760" y="472" />
+    <coppercoin id="67" x="760" y="448" />
+    <coppercoin id="68" x="632" y="104" />
+    <coppercoin id="69" x="632" y="88" />
+    <coppercoin id="70" x="616" y="72" />
+    <coppercoin id="71" x="648" y="72" />
+    <silvercoin id="72" x="912" y="216" />
+    <chest id="73" x="584" y="432" item="0" />
   </entities>
 </level>

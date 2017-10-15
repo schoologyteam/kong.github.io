@@ -52,6 +52,9 @@ class Hammer extends Entity {
         }
         let e = this.collideTypes(["enemy", "slime", "plant"], this.mask.x, this.mask.y);
         if (e) {
+            MyGame.snds["box"].pause();
+            MyGame.snds["box"].currentTime = 0;
+            MyGame.snds["box"].play();
             e.onCollision(2, "hammer");
         }
         let h = this.collideTypes("hazard", this.x, this.y);

@@ -30,12 +30,17 @@ class ShopItem extends Entity {
         this.setHitBox(48, 48);
     }
     update(_dt) {
-        if (this.collideTypes("player", this.x, this.y)) {
+        let player = this.collideTypes("player", this.x, this.y);
+        if (player) {
             if (KeyManager.pressed("x")) {
                 if (Eduardo.money >= this.price) {
+                    MyGame.snds["coin_silver"].pause();
+                    MyGame.snds["coin_silver"].currentTime = 0;
+                    MyGame.snds["coin_silver"].play();
                     if (this.item > 0) {
                         Eduardo.power = this.item;
                         Eduardo.powerHits = 3;
+                        player.selectCostume();
                     }
                     else if (this.item === 0) {
                         Eduardo.hearts += 2;
@@ -44,6 +49,11 @@ class ShopItem extends Entity {
                         }
                     }
                     Eduardo.money -= this.price;
+                }
+                else {
+                    MyGame.snds["hurt"].pause();
+                    MyGame.snds["hurt"].currentTime = 0;
+                    MyGame.snds["hurt"].play();
                 }
             }
         }

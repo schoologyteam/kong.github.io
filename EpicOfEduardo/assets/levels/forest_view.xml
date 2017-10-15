@@ -150,5 +150,9 @@
     <chest id="86" x="1312" y="480" item="7" />
     <doorway id="87" x="3672" y="424" stage="29" targetX="168" targetY="200" />
     <platform id="37" x="960" y="192" width="120" />
+    <platform id="38" x="496" y="216" width="40" />
+    <buzzbot id="39" x="3048" y="352" behavior="Circle" speed="1.4" size="90" drops="0" />
+    <buzzbot id="40" x="2832" y="288" behavior="Circle" speed="1.4" size="80" drops="0" />
+    <chest id="41" x="2648" y="408" item="0" />
   </entities>
 </level>

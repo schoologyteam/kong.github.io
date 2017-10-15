@@ -2,6 +2,10 @@
 class MKTurtle extends BaseMobile {
     constructor(_x, _y) {
         super(_x, _y);
+        MyGame.nowPlaying.pause();
+        MyGame.nowPlaying.currentTime = 0;
+        MyGame.nowPlaying = MyGame.snds["Boss"];
+        MyGame.nowPlaying.play();
         this.faceRight = false;
         this.image = new GameSprite(MyGame.imgs["mk_turtle"], 144, 192);
         this.image.addAnimation("bullets", [0, 1, 0]);
@@ -69,6 +73,9 @@ class MKTurtle extends BaseMobile {
         if (this.attacking) {
             if (this.image.currentFrame == 1) {
                 this.attacking = false;
+                MyGame.snds["pop"].pause();
+                MyGame.snds["pop"].currentTime = 0;
+                MyGame.snds["pop"].play();
                 this.world.addEntity(new Bullet(this.x + 5, this.y + 63, 5, 5, Math.PI));
                 this.world.addEntity(new Bullet(this.x + 40, this.y + 63, 5, 5, Math.PI));
                 this.timers[0] = 150;
@@ -77,6 +84,9 @@ class MKTurtle extends BaseMobile {
             }
             else if (this.image.currentFrame == 2) {
                 this.attacking = false;
+                MyGame.snds["pop"].pause();
+                MyGame.snds["pop"].currentTime = 0;
+                MyGame.snds["pop"].play();
                 this.world.addEntity(new Bullet(this.x + 80, this.y + 40, 1, 8, Math.atan2(-70, this.target.x - this.x)));
                 this.world.addEntity(new Bullet(this.x + 40, this.y + 40, 1, 8, Math.atan2(-70, this.target.x - this.x)));
                 this.timers[1] = 100;

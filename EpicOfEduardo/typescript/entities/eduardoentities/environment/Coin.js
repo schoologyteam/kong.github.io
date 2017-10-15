@@ -8,18 +8,21 @@ class Coin extends Item {
             this.mask = new HitBox(this.x, this.y, 20, 20);
             this.image = new GameSprite(MyGame.imgs[_m], 20, 20);
             this.image.addAnimation("flash", [0, 1, 2, 3, 2, 1, 0]);
+            this.coinSFX = MyGame.snds["coin_copper"];
         }
         else if (_m === "silver") {
             this.value = 5;
             this.mask = new HitBox(this.x, this.y, 28, 28);
             this.image = new GameSprite(MyGame.imgs[_m], 28, 28);
             this.image.addAnimation("flash", [0, 1, 2, 3, 2, 1, 0]);
+            this.coinSFX = MyGame.snds["coin_gold"];
         }
         else if (_m === "gold") {
             this.value = 25;
             this.mask = new HitBox(this.x, this.y, 48, 48);
             this.image = new GameSprite(MyGame.imgs[_m], 48, 48);
             this.image.addAnimation("flash", [0, 1, 2, 1, 0]);
+            this.coinSFX = MyGame.snds["coin_silver"];
         }
         this.index = _i;
         this.image.playAnimation("flash", 10);
@@ -28,6 +31,9 @@ class Coin extends Item {
         this.image.updateAnimation(_dt);
     }
     collect() {
+        this.coinSFX.pause();
+        this.coinSFX.currentTime = 0;
+        this.coinSFX.play();
         Eduardo.money += this.value;
         if (Eduardo.money > 9999) {
             Eduardo.money = 9999;

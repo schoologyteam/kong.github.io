@@ -21,6 +21,9 @@ class PowerUp extends Item {
         this.mask = new HitBox(this.x, this.y, 48, 48);
     }
     collect() {
+        MyGame.snds["item_get"].pause();
+        MyGame.snds["item_get"].currentTime = 0;
+        MyGame.snds["item_get"].play();
         Eduardo.power = this.power;
         Eduardo.powerHits = 2;
         this.destroy();

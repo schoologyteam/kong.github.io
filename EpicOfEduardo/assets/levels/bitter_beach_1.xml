@@ -123,7 +123,7 @@
     <goldcoin id="73" x="4416" y="96" index="4" />
     <goldcoin id="74" x="3248" y="32" index="3" />
     <goldcoin id="75" x="2288" y="96" index="2" />
-    <goldcoin id="76" x="1248" y="120" index="1" />
+    <goldcoin id="76" x="1248" y="96" index="1" />
     <goldcoin id="77" x="768" y="288" index="0" />
     <silvercoin id="78" x="3552" y="248" />
     <coppercoin id="79" x="3520" y="248" />
@@ -187,5 +187,6 @@
     <coppercoin id="137" x="4048" y="248" />
     <coppercoin id="138" x="4072" y="248" />
     <silvercoin id="139" x="4424" y="272" />
+    <chest id="140" x="2000" y="264" item="0" />
   </entities>
 </level>

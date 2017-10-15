@@ -2,6 +2,25 @@
 class MenuWorld extends World {
     constructor() {
         super();
+        if (!MyGame.loaded) {
+            makeSoundLoop(MyGame.snds["City"]);
+            makeSoundLoop(MyGame.snds["Snow"]);
+            makeSoundLoop(MyGame.snds["Overworld"]);
+            makeSoundLoop(MyGame.snds["Forest"]);
+            makeSoundLoop(MyGame.snds["Boss"]);
+            makeSoundLoop(MyGame.snds["Mountain"]);
+            makeSoundLoop(MyGame.snds["Haunted"]);
+            makeSoundLoop(MyGame.snds["Cave"]);
+            makeSoundLoop(MyGame.snds["Swamp"]);
+            makeSoundLoop(MyGame.snds["Title"]);
+            MyGame.loaded = true;
+        }
+        if (MyGame.nowPlaying) {
+            MyGame.nowPlaying.pause();
+            MyGame.nowPlaying.currentTime = 0;
+        }
+        MyGame.nowPlaying = MyGame.snds["Title"];
+        MyGame.nowPlaying.play();
         this.addEntity(new Entity(0, 0, new GameImage(MyGame.imgs["title_background"])));
         this.title = new Entity(140 * 2, 27 * 2, new GameImage(MyGame.imgs["title_spanish"]));
         this.arrow = new Entity(120 * 2, 80 * 2, new GameSprite(MyGame.imgs["stock_arrows"], 48, 48));
@@ -42,6 +61,7 @@ class MenuWorld extends World {
             }();
         }
         this.loadLanguageSelector();
+        this.addEntity(new SoundIcon());
     }
     update(_dt) {
         super.update(_dt);
@@ -71,24 +91,35 @@ class MenuWorld extends World {
                 if (this.choice === 0) {
                     if (!Eduardo.levelCleared["Mystic Cave"]) {
                         Coin.collected = new Array(false, false, false, false, false);
-                        MyGame.setWorld(new LevelWorld("cave", 64, 409));
                         MyGame.color = "#121218";
+                        this.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new CutScene1()));
                         Eduardo.currentLevel = "Mystic Cave";
+                        Eduardo.hearts = 6;
                         Eduardo.money = 0;
                         Eduardo.power = 0;
                         return;
                     }
-                    MyGame.setWorld(new OverWorld());
+                    else {
+                        this.addEntity(new ScreenTransition(MyGame.camera.x, MyGame.camera.y, new OverWorld()));
+                    }
                 }
                 else if (this.choice === 1) {
                     this.loadCredits(1);
                 }
                 else if (this.choice === 2) {
-                    //@to-do Erase data
-                    this.loadLanguageSelector();
+                    this.loadEraseData();
                 }
                 else {
                     this.loadControls();
+                }
+            }
+            else if (this.state === 4) {
+                if (this.choice === 0) {
+                    this.loadMain();
+                }
+                else {
+                    MyGame.reset();
+                    this.loadLanguageSelector();
                 }
             }
             else {
@@ -106,7 +137,7 @@ class MenuWorld extends World {
                 this.loadMain();
             }
         }
-        if (this.state === 3) {
+        else if (this.state === 3) {
             let mPos = MouseManager.getFilteredCoords();
             if (KeyManager.pressed("Escape")) {
                 this.loadMain();
@@ -143,12 +174,19 @@ class MenuWorld extends World {
                     }
                 }
             }
-            
+        }
+        else if (this.state === 4) {
+                if (KeyManager.pressed("Escape")) {
+                this.loadMain();
+            }
         }
         this.arrow.y = (67 + 25 * this.choice) * 2;
     }
     render(_g) {
         super.render(_g);
+        if (Eduardo.screenTransition) {
+            return;
+        }
         let mPos = MouseManager.getFilteredCoords();
         if (this.state === 0) {
             for (let i = 0; i < 2; i++) {
@@ -165,6 +203,9 @@ class MenuWorld extends World {
         }
         else if (this.state === 2) {
             _g.text(this.text[0], 200, 75);
+            for (let i = 1; i < this.text.length; i++) {
+                _g.text(this.text[i], 148, 88 + 32 * i, "#FFFFFF", "24px Verdana");
+            }
         }
         else if (this.state === 3) {
             let t = 150;
@@ -192,6 +233,12 @@ class MenuWorld extends World {
             _g.text(this.text[8], 100, 400, "#FFFFFF", "18px Verdana", 550);
             _g.text(this.text[9], 180, 430, "#FFFFFF", "18px Verdana");
             _g.text(this.text[10], 100, 460, "#FFFFFF", "18px Verdana", 550);
+        }
+        else if (this.state === 4) {
+            _g.text(this.text[0], 155, 100, "#FFFFFF", "18px Verdana");
+            for (let i = 1; i < this.text.length; i++) {
+                _g.text(this.text[i], 155 * 2, 2 * (85 + 25 * (i - 1)));
+            }
         }
     }
     loadMain() {
@@ -243,25 +290,45 @@ class MenuWorld extends World {
         if (_p === 1) {
             if (MyGame.textLanguage === "English") {
                 this.text.push("Programming");
+                this.text.push("Chance G.");
+                this.text.push("");
+                this.text.push("with special thanks to");
+                this.text.push("Laurence W.");
+                this.text.push("Dean M.");
+                this.text.push("Marshall M.");
             }
             else {
                 this.text.push("Programación");
+                this.text.push("Chance G.");
+                this.text.push("");
+                this.text.push("y gracias especial por");
+                this.text.push("Laurence W.");
+                this.text.push("Dean M.");
+                this.text.push("Marshall M.");
             }
         }
         else if (_p === 2) {
             if (MyGame.textLanguage === "English") {
                 this.text.push("Art");
+                this.text.push("Chance G.");
+                this.text.push("TearOfTheStar");
             }
             else {
                 this.text.push("Arte");
+                this.text.push("Chance G.");
+                this.text.push("TearOfTheStar");
             }
         }
         else if (_p === 3) {
             if (MyGame.textLanguage === "English") {
                 this.text.push("Music");
+                this.text.push("Choto The Bright");
+                this.text.push("Snabisch");
             }
             else {
                 this.text.push("Música");
+                this.text.push("Choto The Bright");
+                this.text.push("Snabisch");
             }
         }
         else {
@@ -300,8 +367,77 @@ class MenuWorld extends World {
             this.text.push("Pausa");
             this.text.push("Sordina");
             this.text.push("Haz clic en el actión que queres cambiar, y oprima la tecla que queres usar.");
-            this.text.push("Oprima Escapa para salir este pagina.")
+            this.text.push("Oprima Escapa para salir este pagina.");
             this.text.push("Los direcciónes, Entrada, y Escapa son espcial, y no pueden cambiar.");
         }
+    }
+    loadEraseData() {
+        this.state = 4;
+        this.choice = 0;
+        this.choiceMax = 1;
+        this.arrow.visible = true;
+        this.title.visible = false;
+        this.nextArrow.visible = false;
+        this.backArrow.visible = false;
+        this.text = new Array();
+        if (MyGame.textLanguage === "English") {
+            this.text.push("Are you sure? (this will also reset your custom controls)");
+            this.text.push("No");
+            this.text.push("Yes");
+        }
+        else if (MyGame.textLanguage === "Spanish") {
+            this.text.push("¿Esta bien? (tambien a reiniciar su controls)");
+            this.text.push("No");
+            this.text.push("Sí");
+        }
+    }
+}
+
+function makeSoundLoop(_snd) {
+    _snd.addEventListener("ended", function() {
+        _snd.currentTime = 0;
+        _snd.play();
+    });
+}
+
+class PreLoadWorld extends World {
+    constructor() {
+        super();
+        this.timer = 0;
+        this.alpha = new Array(5);
+        for (let i = 0; i < 5; i++) {
+            this.alpha[i] = 0;
+        }
+    }
+    update(_dt) {
+        super.update(_dt);
+        this.timer++;
+        for (let i = 0; i < 5; i++) {
+            if (this.timer < i * 60) {
+                this.alpha[i] = 0;
+            }
+            else if (this.timer < (i + 1) * 60) {
+                this.alpha[i] = (this.timer - (i) * 60) / 60;
+            }
+            else if (this.timer < (i + 5) * 60) {
+                this.alpha[i] = 1;
+            }
+            else if (this.timer < (i + 6) * 60) {
+                this.alpha[i] = (60 *(i + 6) - this.timer) / 60;
+            }
+            else {
+                this.alpha[i] = 0;
+            }
+        }
+        if (this.timer >= 600) {
+            MyGame.setWorld(new MenuWorld());
+        }
+    }
+    render(_g) {
+        _g.text("Chance presents", 120, 150, `rgba(255,255,255,${this.alpha[0]})`, "32px Verdana");
+        _g.text("A game by Chance", 120, 200, `rgba(255,255,255,${this.alpha[1]})`, "32px Verdana");
+        _g.text("Featruing Music By",120, 250, `rgba(255,255,255,${this.alpha[2]})`, "32px Verdana");
+        _g.text("Choto The Bright",120, 300, `rgba(255,255,255,${this.alpha[3]})`, "32px Verdana");
+        _g.text("and Snabisch",120, 350, `rgba(255,255,255,${this.alpha[4]})`, "32px Verdana");
     }
 }

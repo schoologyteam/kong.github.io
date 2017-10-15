@@ -64,8 +64,11 @@
     <silvercoin id="23" x="1768" y="192" />
     <thornplant id="24" x="1039" y="222" />
     <shooterplant id="25" x="561" y="223" />
-    <chest id="26" x="304" y="192" item="12" />
+    <chest id="26" x="304" y="192" item="7" />
     <lasher id="27" x="104" y="168" />
     <lasher id="28" x="1920" y="192" />
+    <thornplant id="29" x="1584" y="222" />
+    <thornplant id="30" x="368" y="198" />
+    <thornplant id="31" x="224" y="198" />
   </entities>
 </level>
