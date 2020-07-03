@@ -1,4 +1,4 @@
-/* global Mask GridMask*/
+/* global Mask HitBox */
 class HitBox extends Mask {
     constructor(_x, _y, _width, _height) {
         super(_x, _y);
